@@ -1,0 +1,28 @@
+import Image from "next/image";
+import { Button } from "./button";
+
+export function HeroCard() {
+  return (
+    <section id="hero-section" className="-top-12 relative h-screen">
+      <div className="absolute inset-0">
+        <Image
+          className="bg-center size-full object-cover"
+          src="/assets/hero_1.webp"
+          alt="Hero Card"
+          width={1920}
+          height={1080}
+        />
+      </div>
+
+      <div className="right-0 bottom-32 left-0 z-[100] absolute px-6 text-center">
+        <h2 className="leading-2">fall essentials</h2>
+        <h3 className="mb-5 font-adobe text-5xl italic">
+          your seasonal lookbook <span>starts here</span>
+        </h3>
+        <div>
+          <Button>shop now</Button>
+        </div>
+      </div>
+    </section>
+  );
+}
