@@ -51,7 +51,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="gap-4 grid md:grid-cols-2 grid-rows-2 mt-auto mb-12 pt-8 text-xs">
+        <div className="gap-4 grid md:grid-cols-2 grid-rows-2 md:grid-rows-1 mt-auto mb-12 pt-8 text-xs">
           <div>
             <ul className="flex flex-wrap gap-x-12 gap-y-2">
               <li>privacy & cookies policy</li>
