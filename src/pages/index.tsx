@@ -8,12 +8,10 @@ import { Footer } from "@/components/common/footer";
 export default function HomePage() {
   return (
     <div>
-      <Header />
       <HeroCard />
       <NewArrivals />
       <ShopReadAndDiscover />
       <MustReadStories />
-      <Footer />
     </div>
   );
 }

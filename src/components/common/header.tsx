@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
 
 export function Header() {
   const [isTransparent, setIsTransparent] = useState(true);
@@ -21,7 +20,7 @@ export function Header() {
         isTransparent ? "bg-transparent" : "bg-white"
       }`}
     >
-      <header className="flex justify-center items-end gap-6 mx-auto px-8 py-2 container">
+      <header className="flex justify-center items-center gap-6 mx-auto px-8 py-2 container">
         {/* Logo */}
         <div className="w-auto h-8">
           <Image
