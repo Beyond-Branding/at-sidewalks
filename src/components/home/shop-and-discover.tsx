@@ -6,7 +6,7 @@ import { Button } from "@/components/common/button";
 
 export function ShopReadAndDiscover() {
   return (
-    <section className="px-8 pt-18 container">
+    <section className="mx-auto px-8 pt-18 container">
       <ShopNowBar>
         <h2 className="text-2xl italic">new arrivals</h2>
       </ShopNowBar>

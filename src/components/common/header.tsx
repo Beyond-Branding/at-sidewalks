@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function Header() {
@@ -17,7 +18,7 @@ export function Header() {
   return (
     <div
       className={`top-0 z-10 sticky ${
-        isTransparent ? "bg-transparent" : "bg-white"
+        isTransparent ? "bg-transparent" : "bg-primary"
       }`}
     >
       <header className="flex justify-center items-center gap-6 mx-auto px-8 py-2 container">
@@ -35,9 +36,15 @@ export function Header() {
         {/* Navigation */}
         <nav className="flex flex-1 justify-between items-center text-sm">
           <ul className="flex items-center gap-6">
-            <li>shop</li>
-            <li>new</li>
-            <li>picks</li>
+            <li>
+              <Link href="/about">about</Link>
+            </li>
+            <li>
+              <Link href="/blog">blog</Link>
+            </li>
+            <li>
+              <Link href="/contact">contact</Link>
+            </li>
           </ul>
 
           <ul className="hidden md:flex items-center gap-6">

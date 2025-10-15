@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-neue-haas-display-pro);
   --font-mono: var(--font-geist-mono);
   --font-adobe: var(--font-adobe-carlson-pro);
+
+  --color-primary: #ffe4ed;
 }
 
 @utility scrollbar-hidden {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+body {
+  background-color: var(--color-primary);
 }
