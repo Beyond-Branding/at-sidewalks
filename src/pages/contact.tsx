@@ -1,3 +1,5 @@
+import { Button } from "@/components/common/button";
+
 export function ContactForm() {
   return (
     <div className="mx-auto container">
@@ -15,12 +17,17 @@ export function ContactForm() {
       </div>
 
       <div className="mx-auto mt-14 max-w-[720px]">
-        <form className="gap-4 grid grid-cols-2">
-          <div className="w-full">
-            <input placeholder="Name" className="px-4 py-2 border-1 w-full" />
-          </div>
-          <div>
-            <input placeholder="Email*" className="px-4 py-2 border-1 w-full" />
+        <form className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
+            <div className="w-full">
+              <input placeholder="Name" className="px-4 py-2 border-1 w-full" />
+            </div>
+            <div className="w-full">
+              <input
+                placeholder="Email*"
+                className="px-4 py-2 border-1 w-full"
+              />
+            </div>
           </div>
           <div className="col-span-2">
             <textarea
@@ -28,9 +35,8 @@ export function ContactForm() {
               className="px-4 py-2 border-1 w-full h-24"
             />
           </div>
-
           <div className="flex justify-start col-span-2">
-            <button className="bg-white px-6 py-2">Send</button>
+            <Button>Send</Button>
           </div>
         </form>
       </div>

@@ -6,6 +6,7 @@ import { gloriaHallelujahFont } from "@/assets/config/fonts";
 import { AnimatePresence, motion, Variants } from "motion/react";
 import { categories } from "@/constants/categories";
 import { useRouter } from "next/router";
+import { slugify } from "@/utlis/common";
 
 export function CollapsibleLink() {
   return (
@@ -37,7 +38,10 @@ export function CollapsibleLink() {
                   width={100}
                 />
               </div>
-              <Link href={category.href} className="font-gloria-hallelujah">
+              <Link
+                href={`/category/${slugify(category.title)}`}
+                className="font-gloria-hallelujah"
+              >
                 {category.title}
               </Link>
             </div>
@@ -48,7 +52,7 @@ export function CollapsibleLink() {
   );
 }
 
-export function Sidebar({ isOpen, onClose }: any) {
+export function Sidebar({ isOpen }: any) {
   const variants: Variants = {
     open: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
     closed: {
@@ -111,12 +115,25 @@ export function NavLinkWithImage({ href = "#", image, title }: any) {
 }
 
 export function NavLinkWithPopover() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string, { shallow }: any) => {
+      setOpen(false);
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
-        <Link href="/">categories</Link>
+        <button>categories</button>
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content asChild sideOffset={16} align="start">
@@ -126,7 +143,7 @@ export function NavLinkWithPopover() {
             {categories.map((category) => (
               <NavLinkWithImage
                 key={category.title}
-                href={category.href}
+                href={`/category/${slugify(category.title)}`}
                 image={category.image}
                 title={category.title}
               />
@@ -139,6 +156,7 @@ export function NavLinkWithPopover() {
 }
 
 export function Header() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
 
@@ -152,6 +170,18 @@ export function Header() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleRouteChange = (url: string, { shallow }: any) => {
+      setOpen(false);
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router]);
+
   return (
     <>
       <div
@@ -161,7 +191,7 @@ export function Header() {
       >
         <header className="flex justify-center items-center gap-6 mx-auto px-8 py-2 container">
           {/* Logo */}
-          <div className="h-8">
+          <Link className="h-8" href="/">
             <Image
               className="w-auto h-full"
               src="/assets/logo.webp"
@@ -169,7 +199,7 @@ export function Header() {
               width={2294}
               height={656}
             />
-          </div>
+          </Link>
 
           {/* Navigation */}
           <nav className="flex flex-1 justify-between items-center text-sm">
