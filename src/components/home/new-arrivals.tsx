@@ -29,7 +29,7 @@ export function NewArrivals() {
   return (
     <div className="px-6 h-screen">
       <ShopNowBar>
-        <h2 className="text-2xl italic">new arrivals</h2>
+        <h2 className="text-2xl italic">latest blogs</h2>
       </ShopNowBar>
 
       {/* Products */}

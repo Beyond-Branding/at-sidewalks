@@ -1,8 +1,145 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Collapsible, Popover } from "radix-ui";
+import { gloriaHallelujahFont } from "@/assets/config/fonts";
+import { AnimatePresence, motion, Variants } from "motion/react";
+import { categories } from "@/constants/categories";
+import { useRouter } from "next/router";
+
+export function CollapsibleLink() {
+  return (
+    <Collapsible.Root>
+      <Collapsible.Trigger asChild>
+        <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
+          <button className="font-bold pointer-events-none">categories</button>
+          <div className="size-4">
+            <Image
+              className="size-full"
+              src="/assets/ui/plus.png"
+              alt="Plus"
+              width={24}
+              height={24}
+            />
+          </div>
+        </div>
+      </Collapsible.Trigger>
+      <Collapsible.Content asChild>
+        <div className={`${gloriaHallelujahFont.className} mt-2 text-sm`}>
+          {categories.map((category) => (
+            <div className="flex gap-2 space-y-4">
+              <div className="size-6">
+                <Image
+                  className="size-full"
+                  src={category.image}
+                  alt={category.title}
+                  height={100}
+                  width={100}
+                />
+              </div>
+              <Link href={category.href} className="font-gloria-hallelujah">
+                {category.title}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </Collapsible.Content>
+    </Collapsible.Root>
+  );
+}
+
+export function Sidebar({ isOpen, onClose }: any) {
+  const variants: Variants = {
+    open: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
+    closed: {
+      x: "-100%",
+      transition: { type: "spring", stiffness: 300, damping: 30 },
+    },
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  return (
+    <motion.aside
+      initial="closed"
+      animate={isOpen ? "open" : "closed"}
+      exit="closed"
+      variants={variants}
+      className="top-0 bottom-0 left-0 z-10 fixed bg-primary px-8 pt-16 w-screen"
+    >
+      <div className="space-y-4">
+        <CollapsibleLink />
+        <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
+          <Link href="/about" className="font-bold">
+            about
+          </Link>
+        </div>
+        <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
+          <Link href="/contact" className="font-bold">
+            contact
+          </Link>
+        </div>
+      </div>
+    </motion.aside>
+  );
+}
+
+export function NavLinkWithImage({ href = "#", image, title }: any) {
+  return (
+    <Link href={href} className="flex items-center gap-2">
+      <div className="size-8">
+        <Image
+          className="size-full"
+          src={image}
+          alt="Beauty"
+          height={100}
+          width={100}
+        />
+      </div>
+      {title}
+    </Link>
+  );
+}
+
+export function NavLinkWithPopover() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Popover.Root open={open} onOpenChange={setOpen}>
+      <Popover.Trigger asChild>
+        <Link href="/">categories</Link>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content asChild sideOffset={16} align="start">
+          <div
+            className={`${gloriaHallelujahFont.className} z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12`}
+          >
+            {categories.map((category) => (
+              <NavLinkWithImage
+                key={category.title}
+                href={category.href}
+                image={category.image}
+                title={category.title}
+              />
+            ))}
+          </div>
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  );
+}
 
 export function Header() {
+  const [open, setOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
 
   useEffect(() => {
@@ -16,45 +153,49 @@ export function Header() {
   }, []);
 
   return (
-    <div
-      className={`top-0 z-10 sticky ${
-        isTransparent ? "bg-transparent" : "bg-primary"
-      }`}
-    >
-      <header className="flex justify-center items-center gap-6 mx-auto px-8 py-2 container">
-        {/* Logo */}
-        <div className="w-auto h-8">
-          <Image
-            className="size-full"
-            src="/assets/logo.webp"
-            alt="At Sidewalks"
-            width={2294}
-            height={656}
-          />
-        </div>
+    <>
+      <div
+        className={`top-0 z-[1000] sticky ${
+          isTransparent ? "bg-transparent" : "bg-primary"
+        }`}
+      >
+        <header className="flex justify-center items-center gap-6 mx-auto px-8 py-2 container">
+          {/* Logo */}
+          <div className="h-8">
+            <Image
+              className="w-auto h-full"
+              src="/assets/logo.webp"
+              alt="At Sidewalks"
+              width={2294}
+              height={656}
+            />
+          </div>
 
-        {/* Navigation */}
-        <nav className="flex flex-1 justify-between items-center text-sm">
-          <ul className="flex items-center gap-6">
-            <li>
-              <Link href="/about">about</Link>
-            </li>
-            <li>
-              <Link href="/blog">blog</Link>
-            </li>
-            <li>
-              <Link href="/contact">contact</Link>
-            </li>
-          </ul>
+          {/* Navigation */}
+          <nav className="flex flex-1 justify-between items-center text-sm">
+            <ul className="flex items-center gap-6">
+              <li className="md:hidden">
+                <button onClick={() => setOpen((current) => !current)}>
+                  {open ? "close" : "menu"}
+                </button>
+              </li>
+              <li className="hidden md:block">
+                <Link href="/about">about</Link>
+              </li>
+              <li className="hidden md:block">
+                <NavLinkWithPopover />
+              </li>
+              <li className="hidden md:block">
+                <Link href="/contact">contact</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+      </div>
 
-          <ul className="hidden md:flex items-center gap-6">
-            <li>goop world</li>
-            <li>search</li>
-            <li>account</li>
-            <li>bag (0)</li>
-          </ul>
-        </nav>
-      </header>
-    </div>
+      <AnimatePresence>
+        <Sidebar isOpen={open} onClose={() => setOpen(false)} />
+      </AnimatePresence>
+    </>
   );
 }

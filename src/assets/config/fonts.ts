@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { Gloria_Hallelujah } from "next/font/google";
 
 export const neueuHaasDisplayProFont = localFont({
   src: [
@@ -25,4 +26,10 @@ export const adobeCarlsonProFont = localFont({
     },
   ],
   variable: "--font-adobe-carlson-pro",
+});
+
+export const gloriaHallelujahFont = Gloria_Hallelujah({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-gloria-hallelujah",
 });
