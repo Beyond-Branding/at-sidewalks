@@ -3,13 +3,15 @@ import { Button } from "@/components/common/button";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { ShopNowBar } from "../common/shop-now-bar";
+import { Blog, blogs } from "@/constants/blogs";
 
-export function ProductCard() {
+export function BlogCard({ blog }: { blog: Blog }) {
   return (
     <div className="min-w-[354px]">
-      <div>
+      <div className="h-[80%] overflow-hidden">
         <Image
-          src="/assets/product.webp"
+          className="w-auto h-full"
+          src={blog.image}
           alt={""}
           width={800}
           height={1067}
@@ -17,15 +19,15 @@ export function ProductCard() {
         />
       </div>
       <div className="space-y-2 mt-4 text-center">
-        <h4 className="font-medium">birkenstock 1774</h4>
-        <h3>boston pony hair clogs</h3>
-        <p>$485</p>
+        <h4 className="font-medium">{blog.title}</h4>
+        {/*   <h3>{blog.author}</h3>
+        <p>$485</p> */}
       </div>
     </div>
   );
 }
 
-export function NewArrivals() {
+export function LastestBlogs() {
   return (
     <div className="px-6 h-screen">
       <ShopNowBar>
@@ -35,8 +37,8 @@ export function NewArrivals() {
       {/* Products */}
       <ScrollContainer className="pb-6 overflow-x-auto overflow-y-hidden cursor-grab select-none">
         <div className="flex gap-6 mt-6">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <ProductCard key={i} />
+          {blogs.map((blog) => (
+            <BlogCard key={blog.title} blog={blog} />
           ))}
         </div>
       </ScrollContainer>

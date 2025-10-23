@@ -2,7 +2,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button } from "@/components/common/button";
-import { NewArrivals } from "@/components/home/new-arrivals";
+import { LastestBlogs } from "@/components/home/latest-blogs";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function CategoryPage() {
         </div>
       </section>
 
-      <NewArrivals />
+      <LastestBlogs />
     </div>
   );
 }

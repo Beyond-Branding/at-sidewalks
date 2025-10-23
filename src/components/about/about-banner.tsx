@@ -5,7 +5,7 @@ export function AboutBanner() {
     <section className="mx-auto px-8 py-2 container" id="hero-section">
       <div className="rounded-md h-[80vh] overflow-hidden">
         <Image
-          src="/assets/about_banner.webp"
+          src="/assets/about_banner.png"
           className="size-full object-cover"
           alt="About Banner"
           width={2000}

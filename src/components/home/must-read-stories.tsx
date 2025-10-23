@@ -2,17 +2,20 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import Image from "next/image";
 import { ShopNowBar } from "../common/shop-now-bar";
+import { Blog, blogs } from "@/constants/blogs";
 
-export interface StoryProps {
+export interface BlogProps {
   className?: string;
+  blog: Blog;
 }
 
-export function Story({ className }: StoryProps) {
+export function BlogCard({ className, blog }: BlogProps) {
   return (
     <div className={className ? className : "w-[354px]"}>
-      <div>
+      <div className={"h-[80%] w-full overflow-hidden"}>
         <Image
-          src="/assets/product.webp"
+          className="w-full h-full object-cover"
+          src={blog.image}
           alt={""}
           width={800}
           height={1067}
@@ -32,10 +35,7 @@ export function Story({ className }: StoryProps) {
           </div>
         </div>
         <div>
-          <p>
-            the birkin blueprint: how to master the subtle art of undone
-            french-girl hair
-          </p>
+          <p>{blog.title}</p>
         </div>
       </div>
     </div>
@@ -46,16 +46,21 @@ export function MustReadStories() {
   return (
     <div className="px-6 h-screen">
       <ShopNowBar>
-        <h2 className="text-2xl italic">new arrivals</h2>
+        <h2 className="text-2xl italic">must read stories</h2>
       </ShopNowBar>
 
       {/* Products */}
       <ScrollContainer className="pb-6 overflow-x-auto overflow-y-hidden cursor-grab select-none">
         <div className="flex gap-4 mt-6">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Story
+          {blogs.map((blog, i) => (
+            <BlogCard
               key={i}
-              className={i === 0 ? "min-w-[256px]" : "min-w-[354px]"}
+              className={
+                i === 0
+                  ? "min-w-[256px] h-[70%] max-w-screen"
+                  : "min-w-[354px] max-w-screen"
+              }
+              blog={blog}
             />
           ))}
         </div>

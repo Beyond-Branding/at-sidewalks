@@ -2,39 +2,55 @@ export function AboutContent() {
   return (
     <div className="py-12 text-center">
       <div className="space-y-4 mx-auto px-8 max-w-xl">
-        <p>Welcome to Styled By Sakuranbo!</p>
+        <div className="mx-auto rounded-full size-[320px] overflow-hidden shrink-0">
+          <img
+            src="/assets/author.jpg"
+            className="size-full object-cover"
+            alt=""
+          />
+        </div>
+        <p>My Story 🌸</p>
 
         <p>
-          We're a best friend-founded brand born out of creativity, intention,
-          and the hope for girls like us to blossom into the best version of
-          theirselves.
+          I&apos;m often asked why I started this blog, and for the longest
+          time, I tried to come up with something clever — a story that sounded
+          smart, maybe even impressive. But the truth is much simpler than that.
         </p>
 
         <p>
-          SBS started in 2020 when my best friend and I were just two teens with
-          a sticker obsession, a shared laptop, and big dreams. It all began
-          with our first Etsy sticker shop, Sakuranbo Studios, where we
-          hand-designed every sticker and packed orders with love.
+          I started this blog for the little me — the girl who spent hours
+          flipping through glossy magazines, completely enchanted by the world
+          of words, fashion, and storytelling. She dreamed of creating something
+          beautiful, something that felt like her.
         </p>
 
         <p>
-          As we grew, so did our vision. With the help of the blossom community,
-          we launched Styled by Sakuranbo— a space for like-minded girls in
-          search for their better selves!
+          Still, there was this small, persistent voice that kept saying,
+          <span className="italic">&quot;Just start.&quot;</span>
         </p>
 
         <p>
-          What started as a creative outlet has blossomed into a thriving
-          community of dreamers, doers, and gentle go-getters. Whether you're
-          planning your week, building your dream routine, or just looking for a
-          little motivation, we’re here to remind you that... YOU CAN DO IT!
+          So, I did. And when I hit publish for the first time, I felt a wild
+          mix of excitement, nerves, and joy all at once. My friends showed up —
+          they read, they shared, they encouraged. And, that tiny act of faith
+          grew into something real. In that moment, I knew a lifelong love
+          affair had begun.
         </p>
 
-        <p>Thank you for being part of our journey.</p>
+        <p>
+          Today, every post, every word, and every story I share is for her —
+          the little girl who dreamed of creating something she&apos;d be proud
+          of. And for you, for taking time out of your day to read what I write.
+        </p>
+
+        <p>
+          This space is my dream come true. And I&apos;m endlessly grateful that
+          you&apos;re part of it.
+        </p>
 
         <p>
           With love, <br />
-          SBS Team 🌸🫶
+          Yachana 🌸🫶
         </p>
       </div>
     </div>
