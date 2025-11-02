@@ -52,13 +52,18 @@ export function CollapsibleLink() {
   );
 }
 
-export function Sidebar({ isOpen }: any) {
+export function Sidebar({ isOpen, onClose }: any) {
   const variants: Variants = {
     open: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
     closed: {
       x: "-100%",
       transition: { type: "spring", stiffness: 300, damping: 30 },
     },
+  };
+
+  const overlayVariants: Variants = {
+    open: { opacity: 1, display: "block" },
+    closed: { opacity: 0, display: "none" },
   };
 
   useEffect(() => {
@@ -73,27 +78,39 @@ export function Sidebar({ isOpen }: any) {
   }, [isOpen]);
 
   return (
-    <motion.aside
-      initial="closed"
-      animate={isOpen ? "open" : "closed"}
-      exit="closed"
-      variants={variants}
-      className="top-0 bottom-0 left-0 z-10 fixed bg-primary px-8 pt-16 w-screen"
-    >
-      <div className="space-y-4">
-        <CollapsibleLink />
-        <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
-          <Link href="/about" className="font-bold">
-            about
-          </Link>
+    <>
+      <motion.aside
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        exit="closed"
+        variants={variants}
+        className="top-0 bottom-0 left-0 z-100 isolate fixed bg-primary px-8 pt-16 w-screen max-w-[360px]"
+      >
+        <div className="z-10 space-y-4">
+          <CollapsibleLink />
+          <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
+            <Link href="/about" className="font-bold">
+              about
+            </Link>
+          </div>
+          <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
+            <Link href="/contact" className="font-bold">
+              contact
+            </Link>
+          </div>
         </div>
-        <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
-          <Link href="/contact" className="font-bold">
-            contact
-          </Link>
-        </div>
-      </div>
-    </motion.aside>
+      </motion.aside>
+
+      {/* Overlay */}
+      <motion.div
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        exit="closed"
+        variants={overlayVariants}
+        className="z-50 fixed inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={() => onClose()}
+      ></motion.div>
+    </>
   );
 }
 
@@ -189,7 +206,18 @@ export function Header() {
           isTransparent ? "bg-transparent" : "bg-primary"
         }`}
       >
-        <header className="flex justify-center items-center gap-6 mx-auto px-8 py-2 container">
+        <header className="flex justify-between items-center gap-6 mx-auto px-8 py-2 container">
+          {/* Navigation */}
+          <nav className="flex justify-between items-center text-sm">
+            <ul className="flex items-center gap-6">
+              <li>
+                <button onClick={() => setOpen((current) => !current)}>
+                  {open ? "close" : "menu"}
+                </button>
+              </li>
+            </ul>
+          </nav>
+
           {/* Logo */}
           <Link className="h-8" href="/">
             <Image
@@ -201,8 +229,9 @@ export function Header() {
             />
           </Link>
 
+          <div></div>
           {/* Navigation */}
-          <nav className="flex flex-1 justify-between items-center text-sm">
+          {/* <nav className="flex flex-1 justify-between items-center text-sm">
             <ul className="flex items-center gap-6">
               <li className="md:hidden">
                 <button onClick={() => setOpen((current) => !current)}>
@@ -219,7 +248,7 @@ export function Header() {
                 <Link href="/contact">contact</Link>
               </li>
             </ul>
-          </nav>
+          </nav> */}
         </header>
       </div>
 
