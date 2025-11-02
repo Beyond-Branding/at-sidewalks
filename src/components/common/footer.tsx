@@ -50,20 +50,6 @@ export function Footer() {
                 </p>
               </div>
             </div>
-
-            <div>
-              <p className="mb-8 font-medium">subscribe to our newsletter</p>
-              <input
-                type="email"
-                placeholder="your email"
-                className="mb-2 px-4 pb-4 border-gray-200 border-b-[1px] focus-within:outline-0 w-full"
-              />
-              <p className="w-[75%] text-xs">
-                by clicking "submit," you agree to receive emails from goop and
-                accept our web terms of use and privacy and cookie policy.
-                *Terms apply.
-              </p>
-            </div>
           </div>
 
           <div className="flex md:flex-row flex-col flex-[70%] justify-evenly gap-4">
@@ -74,8 +60,22 @@ export function Footer() {
                   <li>{category.title}</li>
                 ))}
               </ul>
-            </div>{" "}
+            </div>
             <NavLinks />
+          </div>
+
+          <div>
+            <p className="mb-8 font-medium">subscribe to our newsletter</p>
+            <input
+              type="email"
+              placeholder="your email"
+              className="mb-2 px-4 pb-4 border-gray-200 border-b-[1px] focus-within:outline-0 w-full"
+            />
+            <p className="w-[75%] text-xs">
+              by clicking "submit," you agree to receive emails from goop and
+              accept our web terms of use and privacy and cookie policy. *Terms
+              apply.
+            </p>
           </div>
         </div>
 

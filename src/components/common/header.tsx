@@ -84,7 +84,7 @@ export function Sidebar({ isOpen, onClose }: any) {
         animate={isOpen ? "open" : "closed"}
         exit="closed"
         variants={variants}
-        className="top-0 bottom-0 left-0 z-100 isolate fixed bg-primary px-8 pt-16 w-screen max-w-[360px]"
+        className="top-0 bottom-0 left-0 z-100 isolate fixed bg-primary px-8 pt-16 w-screen max-w-[540px]"
       >
         <div className="z-10 space-y-4">
           <CollapsibleLink />
