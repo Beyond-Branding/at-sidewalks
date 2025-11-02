@@ -11,7 +11,7 @@ export interface BlogProps {
 
 export function BlogCard({ className, blog }: BlogProps) {
   return (
-    <div className={className ? className : "w-[354px]"}>
+    <div className="min-w-[354px] max-w-screen">
       <div className={"h-[80%] w-full overflow-hidden"}>
         <Image
           className="w-full h-full object-cover"
@@ -44,7 +44,7 @@ export function BlogCard({ className, blog }: BlogProps) {
 
 export function MustReadStories() {
   return (
-    <div className="px-6 h-screen">
+    <div className="px-6 h-fit">
       <ShopNowBar>
         <h2 className="text-2xl italic">must read stories</h2>
       </ShopNowBar>
@@ -53,15 +53,7 @@ export function MustReadStories() {
       <ScrollContainer className="pb-6 overflow-x-auto overflow-y-hidden cursor-grab select-none">
         <div className="flex gap-4 mt-6">
           {blogs.map((blog, i) => (
-            <BlogCard
-              key={i}
-              className={
-                i === 0
-                  ? "min-w-[256px] h-[70%] max-w-screen"
-                  : "min-w-[354px] max-w-screen"
-              }
-              blog={blog}
-            />
+            <BlogCard key={i} blog={blog} />
           ))}
         </div>
       </ScrollContainer>

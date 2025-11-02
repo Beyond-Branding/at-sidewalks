@@ -29,7 +29,7 @@ export function BlogCard({ blog }: { blog: Blog }) {
 
 export function LastestBlogs() {
   return (
-    <div className="px-6 h-screen">
+    <div className="px-6 h-fit">
       <ShopNowBar>
         <h2 className="text-2xl italic">latest blogs</h2>
       </ShopNowBar>

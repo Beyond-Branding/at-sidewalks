@@ -17,10 +17,10 @@ export function NavLinks() {
 
 export function Footer() {
   return (
-    <footer className="relative flex mx-auto px-8 pt-24 h-screen container">
+    <footer className="relative flex mx-auto px-8 pt-24 h-fit container">
       <div className="absolute inset-0 pointer-events-none">
         <Image
-          className="opacity-5 size-full object-contain"
+          className="opacity-20 size-full object-contain"
           src="/assets/logo.webp"
           alt="At Sidewalks"
           width={2294}

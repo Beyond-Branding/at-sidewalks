@@ -41,7 +41,6 @@ export function ShopReadAndDiscover() {
                     <div className="bg-black w-1 h-1"></div>
                     <span className="font-medium">{blogs[1].title}</span>
                   </div>
-                  <a className="underline">read now</a>
                 </div>
                 {/*   <div>
                   <p className="">
@@ -68,7 +67,6 @@ export function ShopReadAndDiscover() {
                     <div className="bg-black w-1 h-1"></div>
                     <span className="font-medium">{blogs[2].title}</span>
                   </div>
-                  <a className="underline">read now</a>
                 </div>
                 {/*   <div>
                   <p className="">
