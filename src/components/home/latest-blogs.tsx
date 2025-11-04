@@ -10,7 +10,7 @@ export function BlogCard({ blog }: { blog: Blog }) {
     <div className="min-w-[354px]">
       <div className="h-[80%] overflow-hidden">
         <Image
-          className="w-auto h-full"
+          className="w-full h-full object-cover"
           src={blog.image}
           alt={""}
           width={800}
@@ -20,8 +20,6 @@ export function BlogCard({ blog }: { blog: Blog }) {
       </div>
       <div className="space-y-2 mt-4 text-center">
         <h4 className="font-medium">{blog.title}</h4>
-        {/*   <h3>{blog.author}</h3>
-        <p>$485</p> */}
       </div>
     </div>
   );

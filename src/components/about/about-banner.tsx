@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function AboutBanner() {
   return (
-    <section className="mx-auto px-8 py-2 container" id="hero-section">
+    <section className="mx-auto py-2 container" id="hero-section">
       <div className="rounded-md h-[80vh] overflow-hidden">
         <Image
           src="/assets/about_banner.png"

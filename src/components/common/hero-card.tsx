@@ -2,7 +2,7 @@ import { Button } from "./button";
 
 export function HeroCard() {
   return (
-    <section id="hero-section" className="-top-12 relative h-screen">
+    <section id="hero-section" className="-top-18 relative h-screen">
       <div className="absolute inset-0">
         <video
           muted
@@ -10,7 +10,7 @@ export function HeroCard() {
           autoPlay
           loop
           className="bg-center size-full object-cover"
-          src="/assets/home_video.mp4"
+          src="/assets/home/video_banner.mp4"
         />
       </div>
 

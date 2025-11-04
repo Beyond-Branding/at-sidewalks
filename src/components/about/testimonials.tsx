@@ -18,7 +18,7 @@ function TestimonialItem({ testimonial }: TestimonialProps) {
 
 export function Testimonials() {
   return (
-    <div className="flex flex-col bg-[#ebd9b9] pb-8">
+    <div className="flex flex-col bg-[#f5f0dc] pb-8">
       <div className="border-b-1 text-center">
         <h3 className="py-8 text-3xl">Praise for At Sidewalks</h3>
       </div>

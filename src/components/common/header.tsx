@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Collapsible, Popover } from "radix-ui";
-import { gloriaHallelujahFont } from "@/assets/config/fonts";
+import { overTheRainbowFont } from "@/assets/config/fonts";
 import { AnimatePresence, motion, Variants } from "motion/react";
 import { categories } from "@/constants/categories";
 import { useRouter } from "next/router";
@@ -26,7 +26,7 @@ export function CollapsibleLink() {
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content asChild>
-        <div className={`${gloriaHallelujahFont.className} mt-2 text-sm`}>
+        <div className={`${overTheRainbowFont.className} mt-2 text-sm`}>
           {categories.map((category) => (
             <div className="flex gap-2 space-y-4">
               <div className="size-6">
@@ -150,12 +150,12 @@ export function NavLinkWithPopover() {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
-        <button>categories</button>
+        <button className="cursor-pointer">categories</button>
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content asChild sideOffset={16} align="start">
           <div
-            className={`${gloriaHallelujahFont.className} z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12`}
+            className={`${overTheRainbowFont.className} z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12 shadow-lg rounded-md`}
           >
             {categories.map((category) => (
               <NavLinkWithImage
@@ -206,32 +206,9 @@ export function Header() {
           isTransparent ? "bg-transparent" : "bg-primary"
         }`}
       >
-        <header className="flex justify-between items-center gap-6 mx-auto px-8 py-2 container">
+        <header className="grid grid-cols-3 mx-auto px-8 py-4 container">
           {/* Navigation */}
-          <nav className="flex justify-between items-center text-sm">
-            <ul className="flex items-center gap-6">
-              <li>
-                <button onClick={() => setOpen((current) => !current)}>
-                  {open ? "close" : "menu"}
-                </button>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Logo */}
-          <Link className="h-8" href="/">
-            <Image
-              className="w-auto h-full"
-              src="/assets/logo.webp"
-              alt="At Sidewalks"
-              width={2294}
-              height={656}
-            />
-          </Link>
-
-          <div></div>
-          {/* Navigation */}
-          {/* <nav className="flex flex-1 justify-between items-center text-sm">
+          <nav className="flex justify-between text-sm">
             <ul className="flex items-center gap-6">
               <li className="md:hidden">
                 <button onClick={() => setOpen((current) => !current)}>
@@ -239,16 +216,31 @@ export function Header() {
                 </button>
               </li>
               <li className="hidden md:block">
-                <Link href="/about">about</Link>
-              </li>
-              <li className="hidden md:block">
                 <NavLinkWithPopover />
+              </li>
+            </ul>
+          </nav>
+          {/* Logo */}
+          <Link className="h-10" href="/">
+            <Image
+              className="m-auto w-auto h-full object-contain"
+              src="/assets/logo.svg"
+              alt="At Sidewalks"
+              width={2294}
+              height={656}
+            />
+          </Link>
+          {/* Navigation */}
+          <nav className="flex justify-end text-sm">
+            <ul className="flex items-center gap-6">
+              <li className="hidden md:block">
+                <Link href="/about">about</Link>
               </li>
               <li className="hidden md:block">
                 <Link href="/contact">contact</Link>
               </li>
             </ul>
-          </nav> */}
+          </nav>
         </header>
       </div>
 

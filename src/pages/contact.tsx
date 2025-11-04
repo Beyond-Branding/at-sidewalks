@@ -1,4 +1,6 @@
 import { Button } from "@/components/common/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export function ContactForm() {
   return (
@@ -44,20 +46,25 @@ export function ContactForm() {
   );
 }
 
+function SocialCard({ image, handle }: { image: string; handle: string }) {
+  return (
+    <Link href="#">
+      <div className="flex justify-center items-center gap-2">
+        <div className="size-10">
+          <Image src={image} alt="instagram" height={512} width={512} />
+        </div>
+        <div>
+          <p className="font-medium">{handle}</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function ContactPage() {
   return (
     <section className="mx-auto px-8 pt-12 text-center container">
       <div className="mx-auto mb-16 max-w-[55ch]">
-        <h2 className="mb-8 font-medium text-3xl uppercase">Contact Us</h2>
-        <p>
-          We love getting emails from readers. Please feel free to write to
-          Joanna at <span className="font-medium">hello@cupofjo.com</span>. If
-          you have a question, you can also take a look at our FAQ page — the
-          answer may be waiting there for you.
-        </p>
-      </div>
-
-      <div className="mx-auto mb-16 max-w-[55ch]">
         <h2 className="mb-8 font-medium text-3xl uppercase">
           ADVERTISING & PARTNERSHIPS
         </h2>
@@ -70,16 +77,20 @@ export default function ContactPage() {
       </div>
 
       <div className="mx-auto mb-16 max-w-[55ch]">
-        <h2 className="mb-8 font-medium text-3xl uppercase">
-          ADVERTISING & PARTNERSHIPS
-        </h2>
-        <p>
-          We love working with brands and businesses and are happy to create
-          partnerships of all shapes and sizes. Please email{" "}
-          <span className="font-medium">maureen@cupofjo.com</span>
-          for our media kit.
-        </p>
+        <h2 className="mb-8 font-medium text-3xl uppercase">OUR SOCIALS</h2>
+        <div className="flex flex-wrap justify-between items-center gap-6">
+          <SocialCard
+            image="/assets/socials/instagram.png"
+            handle="/@atsidewalks"
+          />
+          <SocialCard
+            image="/assets/socials/gmail.png"
+            handle="/@atsidewalks"
+          />
+          <SocialCard image="/assets/socials/phone.png" handle="/1234567890" />
+        </div>
       </div>
+
       <ContactForm />
     </section>
   );
