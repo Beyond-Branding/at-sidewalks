@@ -1,4 +1,3 @@
-import { categories } from "@/constants/categories";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,7 +23,15 @@ export function NavLinks() {
   );
 }
 
-export function Footer() {
+export interface FooterProps {
+  content: {
+    about: string;
+    contact: string;
+    advertising: string;
+  };
+}
+
+export function Footer({ content }: FooterProps) {
   return (
     <footer className="relative flex pmask-t-to-12 mx-auto mt-16 px-8 h-fit container">
       <div className="absolute inset-0 pointer-events-none">
@@ -51,12 +58,13 @@ export function Footer() {
                   />
                 </div>
 
-                <p className="text-sm">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Magnam quisquam aperiam quidem molestias perspiciatis ullam,
-                  iusto quia cumque. Ex aspernatur enim fugit nisi sed eaque
-                  voluptates suscipit reprehenderit placeat earum.
-                </p>
+                <p
+                  className="text-sm"
+                  suppressHydrationWarning
+                  dangerouslySetInnerHTML={{
+                    __html: content.about || "",
+                  }}
+                ></p>
               </div>
             </div>
           </div>
@@ -67,24 +75,22 @@ export function Footer() {
             <div className="flex-1 space-y-4 pr-8">
               <div>
                 <h2 className="font-medium">contact</h2>
-                <p className="text-sm">
-                  We love getting emails from readers. Please feel free to write
-                  to Joanna at{" "}
-                  <span className="font-medium">hello@cupofjo.com</span>. If you
-                  have a question, you can also take a look at our FAQ page —
-                  the answer may be waiting there for you.
-                </p>
+                <p
+                  className="text-sm"
+                  suppressHydrationWarning
+                  dangerouslySetInnerHTML={{ __html: content.contact || "" }}
+                ></p>
               </div>
 
               <div className="flex-1">
                 <h2 className="font-medium">advertising</h2>
-                <p className="text-sm">
-                  We love getting emails from readers. Please feel free to write
-                  to Joanna at{" "}
-                  <span className="font-medium">hello@cupofjo.com</span>. If you
-                  have a question, you can also take a look at our FAQ page —
-                  the answer may be waiting there for you.
-                </p>
+                <p
+                  className="text-sm"
+                  suppressHydrationWarning
+                  dangerouslySetInnerHTML={{
+                    __html: content.advertising || "",
+                  }}
+                ></p>
               </div>
             </div>
             <div>

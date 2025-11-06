@@ -1,15 +1,13 @@
-import Image from "next/image";
-import { Button } from "@/components/common/button";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { ShopNowBar } from "../common/shop-now-bar";
-import { Blog, blogs } from "@/constants/blogs";
+import { Blog } from "@/constants/blogs";
 
 export function BlogCard({ blog }: { blog: Blog }) {
   return (
     <div className="min-w-[354px]">
       <div className="h-[80%] overflow-hidden">
-        <Image
+        <img
           className="w-full h-full object-cover"
           src={blog.image}
           alt={""}
@@ -19,13 +17,19 @@ export function BlogCard({ blog }: { blog: Blog }) {
         />
       </div>
       <div className="space-y-2 mt-4 text-center">
-        <h4 className="font-medium">{blog.title}</h4>
+        <h4
+          className="font-medium"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: blog.title || "",
+          }}
+        ></h4>
       </div>
     </div>
   );
 }
 
-export function LastestBlogs() {
+export function LastestBlogs({ blogs }: { blogs: Blog[] }) {
   return (
     <div className="px-6 h-fit">
       <ShopNowBar>
