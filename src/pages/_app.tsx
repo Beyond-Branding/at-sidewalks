@@ -7,9 +7,7 @@ import type { AppProps } from "next/app";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={`${neueuHaasDisplayProFont.className}`}>
-      <Header />
       <Component {...pageProps} />
-      <Footer />
     </div>
   );
 }
