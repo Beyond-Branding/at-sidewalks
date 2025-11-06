@@ -7,7 +7,9 @@ export function HeroCard() {
         <video
           muted
           playsInline
+          webkit-playsinline
           autoPlay
+          preload="auto"
           loop
           className="bg-center size-full object-cover"
           src="/assets/home/video_banner.mp4"
