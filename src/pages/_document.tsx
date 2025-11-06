@@ -8,9 +8,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body
-        className={`antialiased ${neueuHaasDisplayProFont.className} ${adobeCarlsonProFont.className}`}
-      >
+      <body className={`antialiased ${neueuHaasDisplayProFont.className}`}>
         <Main />
         <NextScript />
       </body>

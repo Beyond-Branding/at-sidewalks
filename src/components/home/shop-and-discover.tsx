@@ -12,19 +12,17 @@ export function ShopReadAndDiscover() {
         <h2 className="text-2xl italic">shop, read and discover</h2>
       </ShopNowBar>
       <div className="gap-8 grid md:grid-cols-2 grid-rows-2 md:grid-rows-1 mt-6 pb-8">
-        <ScrollContainer className="flex items-start place-items-start gap-8 md:gap-x-[21%] md:grid md:grid-cols-[48%_31%]">
+        <ScrollContainer className="flex flex-col items-start place-items-start gap-8 md:gap-x-[21%] md:grid md:grid-cols-[48%_31%]">
           <div className="min-w-56 h-full">
             <div className="">
               <Image src={blogs[0].image} alt={""} width={800} height={1067} />
             </div>
             <div className="space-y-2 mt-4 text-center">
               <h4 className="font-medium">{blogs[0].title}</h4>
-              {/*  <h3>boston pony hair clogs</h3>
-              <p>$485</p> */}
             </div>
           </div>
 
-          <div className="flex md:flex-col gap-4">
+          <div className="flex flex-col gap-4">
             {/* Blog 1 */}
             <div className="">
               <div>
@@ -37,9 +35,8 @@ export function ShopReadAndDiscover() {
               </div>
               <div>
                 <div className="flex gap-2 my-2">
-                  <div className="flex justify-center items-center gap-1">
-                    <div className="bg-black w-1 h-1"></div>
-                    <span className="font-medium">{blogs[1].title}</span>
+                  <div className="mx-auto font-medium text-center">
+                    {blogs[1].title}
                   </div>
                 </div>
                 {/*   <div>
@@ -64,8 +61,9 @@ export function ShopReadAndDiscover() {
               <div>
                 <div className="flex gap-2 my-2">
                   <div className="flex justify-center items-center gap-1">
-                    <div className="bg-black w-1 h-1"></div>
-                    <span className="font-medium">{blogs[2].title}</span>
+                    <span className="font-medium text-center">
+                      {blogs[2].title}
+                    </span>
                   </div>
                 </div>
                 {/*   <div>
@@ -91,7 +89,7 @@ export function ShopReadAndDiscover() {
 
           <div className="right-0 bottom-1/4 left-0 z-[100] absolute px-6 text-white text-center">
             {/* <h2 className="leading-2">fall essentials</h2> */}
-            <h3 className="mb-5 font-adobe text-5xl italic">
+            <h3 className="mb-5 font-adobe text-3xl md:text-5xl italic">
               {blogs[3].title}
             </h3>
             <div>

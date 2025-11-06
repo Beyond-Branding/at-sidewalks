@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Collapsible, Popover } from "radix-ui";
-import { overTheRainbowFont } from "@/assets/config/fonts";
 import { AnimatePresence, motion, Variants } from "motion/react";
 import { categories } from "@/constants/categories";
 import { useRouter } from "next/router";
@@ -26,7 +25,7 @@ export function CollapsibleLink() {
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content asChild>
-        <div className={`${overTheRainbowFont.className} mt-2 text-sm`}>
+        <div className={`mt-2 text-sm`}>
           {categories.map((category) => (
             <div className="flex gap-2 space-y-4">
               <div className="size-6">
@@ -40,7 +39,7 @@ export function CollapsibleLink() {
               </div>
               <Link
                 href={`/category/${slugify(category.title)}`}
-                className="font-gloria-hallelujah"
+                className="lowercase"
               >
                 {category.title}
               </Link>
@@ -116,7 +115,10 @@ export function Sidebar({ isOpen, onClose }: any) {
 
 export function NavLinkWithImage({ href = "#", image, title }: any) {
   return (
-    <Link href={href} className="flex items-center gap-2">
+    <Link
+      href={href}
+      className="flex items-center gap-2 hover:text-pink-300 text-sm lowercase"
+    >
       <div className="size-8">
         <Image
           className="size-full"
@@ -155,7 +157,7 @@ export function NavLinkWithPopover() {
       <Popover.Portal>
         <Popover.Content asChild sideOffset={16} align="start">
           <div
-            className={`${overTheRainbowFont.className} z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12 shadow-lg rounded-md`}
+            className={`z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12 shadow-lg rounded-md`}
           >
             {categories.map((category) => (
               <NavLinkWithImage
