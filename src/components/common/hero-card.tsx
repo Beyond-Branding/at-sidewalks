@@ -12,7 +12,8 @@ export function HeroCard() {
           preload="auto"
           loop
           className="bg-center size-full object-cover"
-          src="/assets/home/video_banner.mp4"
+          src="https://res.cloudinary.com/daoju0r3c/video/upload/v1762443723/d123_1_qykwa2.mp4"
+          poster="/logo.svg"
         />
       </div>
 
