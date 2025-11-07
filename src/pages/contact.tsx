@@ -1,6 +1,20 @@
 import { Button } from "@/components/common/button";
+import Layout from "@/components/common/layout";
+import { getCommonData } from "@/controllers/common.controller";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const getStaticProps = (async (context) => {
+  const { footer } = await getCommonData();
+
+  return {
+    revalidate: 60,
+    props: {
+      footer,
+    },
+  };
+}) satisfies GetStaticProps<any>;
 
 export function ContactForm() {
   return (
@@ -61,37 +75,44 @@ function SocialCard({ image, handle }: { image: string; handle: string }) {
   );
 }
 
-export default function ContactPage() {
+export default function ContactPage(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   return (
-    <section className="mx-auto px-8 pt-12 text-center container">
-      <div className="mx-auto mb-16 max-w-[55ch]">
-        <h2 className="mb-8 font-medium text-3xl uppercase">
-          ADVERTISING & PARTNERSHIPS
-        </h2>
-        <p>
-          We love working with brands and businesses and are happy to create
-          partnerships of all shapes and sizes. Please email{" "}
-          <span className="font-medium">maureen@cupofjo.com</span>
-          for our media kit.
-        </p>
-      </div>
-
-      <div className="mx-auto mb-16 max-w-[55ch]">
-        <h2 className="mb-8 font-medium text-3xl uppercase">OUR SOCIALS</h2>
-        <div className="flex flex-wrap justify-between items-center gap-6">
-          <SocialCard
-            image="/assets/socials/instagram.png"
-            handle="/@atsidewalks"
-          />
-          <SocialCard
-            image="/assets/socials/gmail.png"
-            handle="/@atsidewalks"
-          />
-          <SocialCard image="/assets/socials/phone.png" handle="/1234567890" />
+    <Layout footer={props.footer}>
+      <section className="mx-auto px-8 pt-12 text-center container">
+        <div className="mx-auto mb-16 max-w-[55ch]">
+          <h2 className="mb-8 font-medium text-3xl uppercase">
+            ADVERTISING & PARTNERSHIPS
+          </h2>
+          <div
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+              __html: props.footer.advertising || "",
+            }}
+          ></div>
         </div>
-      </div>
 
-      <ContactForm />
-    </section>
+        <div className="mx-auto mb-16 max-w-[55ch]">
+          <h2 className="mb-8 font-medium text-3xl uppercase">OUR SOCIALS</h2>
+          <div className="flex flex-wrap justify-between items-center gap-6">
+            <SocialCard
+              image="/assets/socials/instagram.png"
+              handle="/@atsidewalks"
+            />
+            <SocialCard
+              image="/assets/socials/gmail.png"
+              handle="/@atsidewalks"
+            />
+            <SocialCard
+              image="/assets/socials/phone.png"
+              handle="/1234567890"
+            />
+          </div>
+        </div>
+
+        <ContactForm />
+      </section>
+    </Layout>
   );
 }
