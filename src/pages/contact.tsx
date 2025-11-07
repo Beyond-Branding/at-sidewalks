@@ -1,4 +1,5 @@
 import { Button } from "@/components/common/button";
+import Layout from "@/components/common/layout";
 import { getCommonData } from "@/controllers/common.controller";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
@@ -123,87 +124,81 @@ export default function ContactPageSplit(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   return (
-    <section className="mx-auto px-6 py-12 container">
-      <div className="mx-auto max-w-5xl">
-        <div className="items-start gap-12 grid grid-cols-1 md:grid-cols-2">
-          <div>
-            <h2 className="mb-6 font-medium text-2xl">
-              Advertising & Partnerships
-            </h2>
-            <p className="mb-6">
-              We love working with brands and businesses and are happy to create
-              partnerships of all shapes and sizes. Please email{" "}
-              <Link
-                href="mailto:maureen@cupofjo.com"
-                className="font-medium text-pink-500 hover:underline"
-              >
-                maureen@cupofjo.com
-              </Link>{" "}
-              for our media kit.
-            </p>
+    <Layout footer={props.footer}>
+      <section className="mx-auto px-6 py-12 container">
+        <div className="mx-auto max-w-5xl">
+          <div className="items-start gap-12 grid grid-cols-1 md:grid-cols-2">
+            <div>
+              <h2 className="mb-6 font-medium text-2xl">
+                Advertising & Partnerships
+              </h2>
+              <div
+                className="mb-6"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                  __html: props?.footer?.advertising || "",
+                }}
+              ></div>
 
-            <div className="mt-8">
-              <h3 className="mb-4 font-medium text-xl">Our Socials</h3>
-              <div className="flex flex-col gap-3">
-                <SocialRow
-                  icon={<InstagramIcon className="w-5 h-5" />}
-                  label="instagram /@atsidewalks"
-                  href="https://instagram.com/atsidewalks"
-                />
-                <SocialRow
-                  icon={<MailIcon className="w-5 h-5" />}
-                  label="gmail /@atsidewalks"
-                  href="mailto:atsidewalks@gmail.com"
-                />
-                <SocialRow
-                  icon={<PhoneIcon className="w-5 h-5" />}
-                  label="phone /1234567890"
-                  href="tel:+911234567890"
-                />
+              <div className="mt-8">
+                <h3 className="mb-4 font-medium text-xl">Our Socials</h3>
+                <div className="flex flex-col gap-3">
+                  <SocialRow
+                    icon={<InstagramIcon className="w-5 h-5" />}
+                    label="instagram /@atsidewalks"
+                    href="https://instagram.com/atsidewalks"
+                  />
+                  <SocialRow
+                    icon={<MailIcon className="w-5 h-5" />}
+                    label="gmail /@atsidewalks"
+                    href="mailto:atsidewalks@gmail.com"
+                  />
+                  <SocialRow
+                    icon={<PhoneIcon className="w-5 h-5" />}
+                    label="phone /1234567890"
+                    href="tel:+911234567890"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div>
-            <h3 className="mb-4 font-medium text-2xl">Contact us</h3>
-            <p className="mb-6">
-              If you have any query about your order or anything else, please
-              don’t hesitate to contact us using the form below. Alternatively,
-              you can contact us using our email -{" "}
-              <Link
-                href="mailto:studiossakuranbo@gmail.com"
-                className="font-medium text-pink-500 hover:underline"
-              >
-                studiossakuranbo@gmail.com
-              </Link>
-            </p>
-            <form className="flex flex-col gap-4">
-              <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
-                <input
-                  aria-label="Name"
-                  placeholder="Name"
-                  className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full"
+            <div>
+              <h3 className="mb-4 font-medium text-2xl">Contact us</h3>
+              <div
+                className="mb-6"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                  __html: props?.footer?.contact || "",
+                }}
+              ></div>
+              <form className="flex flex-col gap-4">
+                <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
+                  <input
+                    aria-label="Name"
+                    placeholder="Name"
+                    className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full"
+                  />
+                  <input
+                    aria-label="Email"
+                    placeholder="Email*"
+                    className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full"
+                  />
+                </div>
+
+                <textarea
+                  aria-label="Comment"
+                  placeholder="Comment"
+                  className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full h-40"
                 />
-                <input
-                  aria-label="Email"
-                  placeholder="Email*"
-                  className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full"
-                />
-              </div>
 
-              <textarea
-                aria-label="Comment"
-                placeholder="Comment"
-                className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full h-40"
-              />
-
-              <div className="flex justify-start">
-                <Button>Send</Button>
-              </div>
-            </form>
+                <div className="flex justify-start">
+                  <Button>Send</Button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Layout>
   );
 }
