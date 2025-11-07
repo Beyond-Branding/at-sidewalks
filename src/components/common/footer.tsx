@@ -58,13 +58,13 @@ export function Footer({ content }: FooterProps) {
                   />
                 </div>
 
-                <p
+                <div
                   className="text-sm"
                   suppressHydrationWarning
                   dangerouslySetInnerHTML={{
-                    __html: content.about || "",
+                    __html: content?.about || "",
                   }}
-                ></p>
+                ></div>
               </div>
             </div>
           </div>
@@ -75,22 +75,22 @@ export function Footer({ content }: FooterProps) {
             <div className="flex-1 space-y-4 pr-8">
               <div>
                 <h2 className="font-medium">contact</h2>
-                <p
+                <div
                   className="text-sm"
                   suppressHydrationWarning
-                  dangerouslySetInnerHTML={{ __html: content.contact || "" }}
-                ></p>
+                  dangerouslySetInnerHTML={{ __html: content?.contact || "" }}
+                ></div>
               </div>
 
               <div className="flex-1">
                 <h2 className="font-medium">advertising</h2>
-                <p
+                <div
                   className="text-sm"
                   suppressHydrationWarning
                   dangerouslySetInnerHTML={{
-                    __html: content.advertising || "",
+                    __html: content?.advertising || "",
                   }}
-                ></p>
+                ></div>
               </div>
             </div>
             <div>

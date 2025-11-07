@@ -1,8 +1,10 @@
 export interface Blog {
+  id: number;
   title: string;
   publishedAt: string;
   author: string;
   image: string;
+  description?: string;
   categories?: string[];
 }
 

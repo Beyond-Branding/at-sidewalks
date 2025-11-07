@@ -20,3 +20,19 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-primary);
 }
+
+.blog-container h3 {
+  @apply font-bold;
+}
+
+.blog-container img {
+  @apply mb-8;
+}
+
+.blog-container hr {
+  @apply my-6;
+}
+
+.blog-container p {
+  @apply mb-4;
+}

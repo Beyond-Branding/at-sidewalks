@@ -1,10 +1,10 @@
 import ScrollContainer from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { ShopNowBar } from "@/components/common/shop-now-bar";
-import Image from "next/image";
 import { Button } from "@/components/common/button";
 import { Blog } from "@/constants/blogs";
 import { useMemo } from "react";
+import Link from "next/link";
 
 export interface ShopReadAndDiscoverProps {
   blogs: Blog[];
@@ -32,13 +32,15 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
               <img src={blogOne.image} alt={""} width={800} height={1067} />
             </div>
             <div className="space-y-2 mt-4 text-center">
-              <h4
-                className="font-medium"
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                  __html: blogOne.title,
-                }}
-              ></h4>
+              <Link href={`/blog/${blogOne.id}`}>
+                <h4
+                  className="font-medium hover:underline"
+                  suppressHydrationWarning
+                  dangerouslySetInnerHTML={{
+                    __html: blogOne.title,
+                  }}
+                ></h4>
+              </Link>
             </div>
           </div>
 
@@ -50,13 +52,15 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
               </div>
               <div>
                 <div className="flex gap-2 my-2">
-                  <div
-                    className="mx-auto font-medium text-center"
-                    suppressHydrationWarning
-                    dangerouslySetInnerHTML={{
-                      __html: blogTwo.title,
-                    }}
-                  ></div>
+                  <Link href={`/blog/${blogTwo.id}`}>
+                    <div
+                      className="mx-auto font-medium text-center hover:underline"
+                      suppressHydrationWarning
+                      dangerouslySetInnerHTML={{
+                        __html: blogTwo.title,
+                      }}
+                    ></div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -68,13 +72,15 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
               </div>
               <div>
                 <div className="flex gap-2 my-2">
-                  <div
-                    className="flex justify-center items-center gap-1 font-medium text-center"
-                    suppressHydrationWarning
-                    dangerouslySetInnerHTML={{
-                      __html: blogThree.title,
-                    }}
-                  ></div>
+                  <Link href={`/blog/${blogThree.id}`}>
+                    <div
+                      className="flex justify-center items-center gap-1 font-medium text-center"
+                      suppressHydrationWarning
+                      dangerouslySetInnerHTML={{
+                        __html: blogThree.title,
+                      }}
+                    ></div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -92,7 +98,6 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
           </div>
 
           <div className="right-0 bottom-1/4 left-0 z-[100] absolute px-6 text-white text-center">
-            {/* <h2 className="leading-2">fall essentials</h2> */}
             <h3
               className="mb-5 font-adobe text-3xl md:text-5xl italic"
               suppressHydrationWarning
@@ -101,7 +106,9 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
               }}
             ></h3>
             <div>
-              <Button>read now</Button>
+              <Link href={`/blog/${blogFour.id}`}>
+                <Button>read now</Button>
+              </Link>
             </div>
           </div>
         </div>
