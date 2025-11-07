@@ -3,6 +3,7 @@ export interface Blog {
   publishedAt: string;
   author: string;
   image: string;
+  categories?: string[];
 }
 
 export const blogs = [

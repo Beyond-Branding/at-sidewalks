@@ -7,6 +7,8 @@ import Layout from "@/components/common/layout";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 export const getStaticProps = (async (context) => {
+  const categories = (await wp.categories()) as any[];
+
   const footer_about = await wp.pages().id(4854);
   const footer_contact = await wp.pages().id(4856);
   const footer_advertising = await wp.pages().id(4858);
@@ -14,16 +16,40 @@ export const getStaticProps = (async (context) => {
   const latest_blogs = await wp.posts().perPage(10);
 
   /* Process the blogs */
-  const blogs = await Promise.all(
+  const latestBlogs = await Promise.all(
     latest_blogs.map(async (blog: any) => {
       const image = await wp.media().id(blog.featured_media);
-      console.log(image["guid"]["rendered"]);
 
       return {
         title: blog.title.rendered,
         publishedAt: blog.date,
         author: blog.author,
         image: image["source_url"],
+        categories: [],
+      };
+    })
+  );
+
+  const sticky_blogs = await wp.posts().param("sticky", "true");
+
+  /* Process the sticky blogs */
+  const stickyBlogs = await Promise.all(
+    sticky_blogs.map(async (blog: any) => {
+      const image = await wp.media().id(blog.featured_media);
+
+      const blogCategories = [];
+
+      for (const category of blog.categories) {
+        const categoryName = categories.find((c) => c.id === category);
+        if (categoryName) blogCategories.push(categoryName.name);
+      }
+
+      return {
+        title: blog.title.rendered,
+        publishedAt: blog.date,
+        author: blog.author,
+        image: image["source_url"],
+        categories: blogCategories,
       };
     })
   );
@@ -36,7 +62,8 @@ export const getStaticProps = (async (context) => {
         contact: footer_contact.content.rendered,
         advertising: footer_advertising.content.rendered,
       },
-      blogs,
+      latestBlogs,
+      stickyBlogs,
     },
   };
 }) satisfies GetStaticProps<any>;
@@ -48,9 +75,9 @@ export default function HomePage(
     <Layout footer={props.footer}>
       <div>
         <HeroCard />
-        <LastestBlogs blogs={props.blogs} />
-        <ShopReadAndDiscover />
-        <MustReadStories />
+        <LastestBlogs blogs={props.latestBlogs} />
+        <ShopReadAndDiscover blogs={props.stickyBlogs} />
+        <MustReadStories blogs={props.stickyBlogs} />
       </div>
     </Layout>
   );

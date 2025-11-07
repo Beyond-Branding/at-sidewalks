@@ -1,8 +1,7 @@
 import ScrollContainer from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
-import Image from "next/image";
 import { ShopNowBar } from "../common/shop-now-bar";
-import { Blog, blogs } from "@/constants/blogs";
+import { Blog } from "@/constants/blogs";
 
 export interface BlogProps {
   className?: string;
@@ -13,7 +12,7 @@ export function BlogCard({ className, blog }: BlogProps) {
   return (
     <div className="min-w-[354px] max-w-screen">
       <div className={"h-[80%] w-full overflow-hidden"}>
-        <Image
+        <img
           className="w-full h-full object-cover"
           src={blog.image}
           alt={""}
@@ -26,7 +25,12 @@ export function BlogCard({ className, blog }: BlogProps) {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 font-medium">
             <div className="bg-black size-2"></div>
-            <span>beauty</span>
+            <span
+              suppressHydrationWarning
+              dangerouslySetInnerHTML={{
+                __html: blog.categories?.at(0) || "",
+              }}
+            ></span>
           </div>
           <div>
             <a className="underline" href="">
@@ -34,15 +38,22 @@ export function BlogCard({ className, blog }: BlogProps) {
             </a>
           </div>
         </div>
-        <div>
-          <p>{blog.title}</p>
-        </div>
+        <div
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: blog.title,
+          }}
+        ></div>
       </div>
     </div>
   );
 }
 
-export function MustReadStories() {
+export interface MustReadStoriesProps {
+  blogs: Blog[];
+}
+
+export function MustReadStories({ blogs }: MustReadStoriesProps) {
   return (
     <div className="px-6 h-fit">
       <ShopNowBar>
