@@ -13,6 +13,10 @@ export const getStaticProps = (async (context) => {
   /* Page specific data */
   const latestBlogs = await getPosts();
   const stickyBlogs = await getStickyPosts();
+  const mustReadStories = await getPosts({
+    tags: 240,
+    per_page: 100,
+  });
 
   return {
     revalidate: 60,
@@ -20,6 +24,7 @@ export const getStaticProps = (async (context) => {
       footer,
       latestBlogs,
       stickyBlogs,
+      mustReadStories,
     },
   };
 }) satisfies GetStaticProps<any>;
@@ -33,7 +38,7 @@ export default function HomePage(
         <HeroCard />
         <LastestBlogs blogs={props.latestBlogs} />
         <ShopReadAndDiscover blogs={props.stickyBlogs} />
-        <MustReadStories blogs={props.stickyBlogs} />
+        <MustReadStories blogs={props.mustReadStories} />
       </div>
     </Layout>
   );

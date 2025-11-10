@@ -5,12 +5,15 @@ import { Button } from "@/components/common/button";
 import { Blog } from "@/constants/blogs";
 import { useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export interface ShopReadAndDiscoverProps {
   blogs: Blog[];
 }
 
 export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
+  const router = useRouter();
+
   const [blogOne, blogTwo, blogThree, blogFour] = useMemo(
     () => [blogs[0], blogs[1], blogs[2], blogs[3]],
     [blogs]
@@ -31,22 +34,16 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
         <ScrollContainer className="flex flex-col items-start place-items-start gap-8 md:gap-x-[21%] md:grid md:grid-cols-[48%_31%]">
           {/* Blog 1 */}
           <div className="min-w-56 h-full">
-            <div>
+            <div
+              className="cursor-pointer"
+              onClick={() => router.push(`/blog/${blogOne.id}`)}
+            >
               <img src={blogOne.image} alt={""} width={800} height={1067} />
             </div>
             <div className="space-y-2 mt-4 text-center">
               <Link href={`/blog/${blogOne.id}`}>
                 <h4
-                  className="
-                    font-medium 
-                    text-black 
-                    transition-all 
-                    duration-300 
-                    hover:text-[#f5acc8] 
-                    hover:underline 
-                    underline-offset-4 
-                    decoration-[#f5acc8]
-                  "
+                  className="font-medium text-black hover:text-[#f5acc8] decoration-[#f5acc8] hover:underline underline-offset-4 transition-all duration-300"
                   suppressHydrationWarning
                   dangerouslySetInnerHTML={{
                     __html: blogOne.title,
@@ -60,22 +57,16 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
           <div className="flex flex-col gap-4">
             {/* Blog 2 */}
             <div>
-              <div>
+              <div
+                className="cursor-pointer"
+                onClick={() => router.push(`/blog/${blogTwo.id}`)}
+              >
                 <img src={blogTwo.image} alt={""} width={800} height={1067} />
               </div>
               <div className="flex gap-2 my-2">
                 <Link href={`/blog/${blogTwo.id}`}>
                   <div
-                    className="
-                      mx-auto font-medium text-center
-                      text-black 
-                      transition-all 
-                      duration-300 
-                      hover:text-[#f5acc8] 
-                      hover:underline 
-                      underline-offset-4 
-                      decoration-[#f5acc8]
-                    "
+                    className="mx-auto font-medium text-black hover:text-[#f5acc8] text-center decoration-[#f5acc8] hover:underline underline-offset-4 transition-all duration-300"
                     suppressHydrationWarning
                     dangerouslySetInnerHTML={{
                       __html: blogTwo.title,
@@ -87,22 +78,16 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
 
             {/* Blog 3 */}
             <div className="order-1 md:order-2">
-              <div>
+              <div
+                className="cursor-pointer"
+                onClick={() => router.push(`/blog/${blogThree.id}`)}
+              >
                 <img src={blogThree.image} alt={""} width={800} height={1067} />
               </div>
               <div className="flex gap-2 my-2">
                 <Link href={`/blog/${blogThree.id}`}>
                   <div
-                    className="
-                      flex justify-center items-center gap-1 font-medium text-center
-                      text-black 
-                      transition-all 
-                      duration-300 
-                      hover:text-[#f5acc8] 
-                      hover:underline 
-                      underline-offset-4 
-                      decoration-[#f5acc8]
-                    "
+                    className="flex justify-center items-center gap-1 font-medium text-black hover:text-[#f5acc8] text-center decoration-[#f5acc8] hover:underline underline-offset-4 transition-all duration-300"
                     suppressHydrationWarning
                     dangerouslySetInnerHTML={{
                       __html: blogThree.title,

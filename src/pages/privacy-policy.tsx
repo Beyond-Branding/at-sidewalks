@@ -1,11 +1,34 @@
 import Layout from "@/components/common/layout";
+import { getCommonData } from "@/controllers/common.controller";
+import { getPage } from "@/controllers/page.controller";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 
-export default function PrivacyPolicyPage({ footer }: any) {
+export const getStaticProps = (async (context) => {
+  const { footer } = await getCommonData();
+
+  /* Page specific data */
+  const privacyPolicy = await getPage({
+    slug: "privacy-policy",
+  });
+
+  console.log(privacyPolicy);
+
+  return {
+    revalidate: 60,
+    props: {
+      footer,
+    },
+  };
+}) satisfies GetStaticProps<any>;
+
+export default function PrivacyPolicyPage({
+  footer,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout footer={footer}>
-      <section className="mx-auto px-6 py-12 container text-sm leading-relaxed text-gray-800">
-        <div className="mx-auto max-w-5xl space-y-6">
-          <h1 className="text-lg font-semibold mb-4">Privacy Policy</h1>
+      <section className="mx-auto px-6 py-12 text-gray-800 text-sm leading-relaxed container">
+        <div className="space-y-6 mx-auto max-w-5xl">
+          <h1 className="mb-4 font-semibold text-lg">Privacy Policy</h1>
 
           <p>
             This Privacy Policy describes how <strong>SideWalks</strong> (the
@@ -27,7 +50,9 @@ export default function PrivacyPolicyPage({ footer }: any) {
             access any of the Services.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">Changes to This Privacy Policy</h2>
+          <h2 className="mt-8 font-medium text-lg">
+            Changes to This Privacy Policy
+          </h2>
           <p>
             We may update this Privacy Policy from time to time, including to
             reflect changes to our practices or for other operational, legal, or
@@ -36,7 +61,7 @@ export default function PrivacyPolicyPage({ footer }: any) {
             required by applicable law.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">
+          <h2 className="mt-8 font-medium text-lg">
             How We Collect and Use Your Personal Information
           </h2>
           <p>
@@ -53,18 +78,31 @@ export default function PrivacyPolicyPage({ footer }: any) {
             Services, our rights, and the rights of our users or others.
           </p>
 
-          <h3 className="text-base font-medium mt-6">
+          <h3 className="mt-6 font-medium text-base">
             Information We Collect Directly from You
           </h3>
-          <ul className="list-disc ml-5 space-y-2">
-            <li>Basic contact details including your name, address, phone number, and email.</li>
-            <li>Order information including billing, shipping, and payment details.</li>
-            <li>Account information such as username, password, and security questions.</li>
-            <li>Shopping and browsing activity such as viewed or saved items.</li>
-            <li>Customer support details including messages and correspondence.</li>
+          <ul className="space-y-2 ml-5 list-disc">
+            <li>
+              Basic contact details including your name, address, phone number,
+              and email.
+            </li>
+            <li>
+              Order information including billing, shipping, and payment
+              details.
+            </li>
+            <li>
+              Account information such as username, password, and security
+              questions.
+            </li>
+            <li>
+              Shopping and browsing activity such as viewed or saved items.
+            </li>
+            <li>
+              Customer support details including messages and correspondence.
+            </li>
           </ul>
 
-          <h3 className="text-base font-medium mt-6">
+          <h3 className="mt-6 font-medium text-base">
             Information We Collect through Cookies
           </h3>
           <p>
@@ -74,8 +112,10 @@ export default function PrivacyPolicyPage({ footer }: any) {
             browser type, IP address, and your interaction with our Site.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">How We Use Your Personal Information</h2>
-          <ul className="list-disc ml-5 space-y-2">
+          <h2 className="mt-8 font-medium text-lg">
+            How We Use Your Personal Information
+          </h2>
+          <ul className="space-y-2 ml-5 list-disc">
             <li>
               <strong>Providing Products and Services:</strong> To process
               payments, fulfill orders, and manage your account.
@@ -94,42 +134,46 @@ export default function PrivacyPolicyPage({ footer }: any) {
             </li>
           </ul>
 
-          <h2 className="text-lg font-medium mt-8">Cookies</h2>
+          <h2 className="mt-8 font-medium text-lg">Cookies</h2>
           <p>
             Like many websites, we use cookies on our Site to personalize and
             improve your experience. You can manage or disable cookies in your
             browser settings, but doing so may limit functionality.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">How We Disclose Personal Information</h2>
+          <h2 className="mt-8 font-medium text-lg">
+            How We Disclose Personal Information
+          </h2>
           <p>
             We may disclose your information to trusted service providers such
             as payment processors, delivery partners, and marketing platforms in
             order to provide and improve our services.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">User Generated Content</h2>
+          <h2 className="mt-8 font-medium text-lg">User Generated Content</h2>
           <p>
             Any content you share publicly (e.g., reviews or posts) will be
             visible to others. Please exercise caution before sharing personal
             details publicly.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">Third Party Websites and Links</h2>
+          <h2 className="mt-8 font-medium text-lg">
+            Third Party Websites and Links
+          </h2>
           <p>
             Our Site may contain links to third-party websites. We are not
             responsible for their privacy or security practices. Please review
             their policies before interacting with them.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">Children’s Data</h2>
+          <h2 className="mt-8 font-medium text-lg">Children’s Data</h2>
           <p>
             The Services are not intended for children, and we do not knowingly
             collect data from individuals under 16 years old. If you believe a
             child has provided us data, contact us to delete it.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">
+          <h2 className="mt-8 font-medium text-lg">
             Security and Retention of Your Information
           </h2>
           <p>
@@ -138,11 +182,11 @@ export default function PrivacyPolicyPage({ footer }: any) {
             for legitimate business, legal, or security purposes.
           </p>
 
-          <h2 className="text-lg font-medium mt-8">Your Rights and Choices</h2>
+          <h2 className="mt-8 font-medium text-lg">Your Rights and Choices</h2>
           <p>
-            Depending on your location, you may have the right to access, delete,
-            correct, or limit the processing of your personal data. You may
-            exercise these rights by contacting us at{" "}
+            Depending on your location, you may have the right to access,
+            delete, correct, or limit the processing of your personal data. You
+            may exercise these rights by contacting us at{" "}
             <a
               href="mailto:atsidewalks@gmail.com"
               className="text-pink-500 hover:underline"
@@ -152,7 +196,7 @@ export default function PrivacyPolicyPage({ footer }: any) {
             .
           </p>
 
-          <h2 className="text-lg font-medium mt-8">Contact</h2>
+          <h2 className="mt-8 font-medium text-lg">Contact</h2>
           <p>
             If you have any questions about this Privacy Policy or our data
             practices, please contact us at:{" "}

@@ -2,6 +2,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { ShopNowBar } from "../common/shop-now-bar";
 import { Blog } from "@/constants/blogs";
+import { useRouter } from "next/router";
 
 export interface BlogProps {
   className?: string;
@@ -9,9 +10,14 @@ export interface BlogProps {
 }
 
 export function BlogCard({ className, blog }: BlogProps) {
+  const router = useRouter();
+
   return (
     <div className="min-w-[354px] max-w-screen">
-      <div className="h-[80%] w-full overflow-hidden">
+      <div
+        className="w-full h-[80%] overflow-hidden cursor-pointer"
+        onClick={() => router.push(`/blog/${blog.id}`)}
+      >
         <img
           className="w-full h-full object-cover"
           src={blog.image}
@@ -37,15 +43,7 @@ export function BlogCard({ className, blog }: BlogProps) {
           {/* Pink hover for 'read now' link */}
           <div>
             <a
-              className="
-                underline 
-                text-black 
-                transition-all 
-                duration-300 
-                hover:text-[#f5acc8] 
-                decoration-[#f5acc8] 
-                underline-offset-4
-              "
+              className="text-black hover:text-[#f5acc8] decoration-[#f5acc8] underline underline-offset-4 transition-all duration-300"
               href=""
             >
               read now
@@ -55,16 +53,7 @@ export function BlogCard({ className, blog }: BlogProps) {
 
         {/* Title hover effect */}
         <div
-          className="
-            font-medium
-            text-black 
-            transition-all 
-            duration-300 
-            hover:text-[#f5acc8] 
-            hover:underline 
-            underline-offset-4 
-            decoration-[#f5acc8]
-          "
+          className="font-medium text-black hover:text-[#f5acc8] decoration-[#f5acc8] hover:underline underline-offset-4 transition-all duration-300"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: blog.title,
