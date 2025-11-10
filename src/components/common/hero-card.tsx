@@ -17,15 +17,7 @@ export function HeroCard() {
         />
       </div>
 
-      <div className="right-0 bottom-32 left-0 absolute px-6 text-center">
-        <h2 className="leading-2">fall essentials</h2>
-        <h3 className="mb-5 font-adobe text-5xl italic">
-          your seasonal lookbook <span>starts here</span>
-        </h3>
-        <div>
-          <Button>shop now</Button>
-        </div>
-      </div>
+      
     </section>
   );
 }

@@ -12,9 +12,9 @@ export function ShopNowBar({
   return (
     <div className="flex justify-between items-center pt-16">
       {children}
-      <div>
+      {/* <div>
         <Button>{ctaText}</Button>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -20,7 +20,7 @@ export function Testimonials() {
   return (
     <div className="flex flex-col bg-[#ffdcea] pb-8">
       <div className="border-b-1 text-center">
-        <h3 className="py-8 text-3xl">Praise for At Sidewalks</h3>
+        <h3 className="py-8 text-3xl">Praise for Sidewalks</h3>
       </div>
       <div className="flex flex-1 pt-8">
         <Marquee style={{ margin: "auto" }}>

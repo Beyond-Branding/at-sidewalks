@@ -21,20 +21,32 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
   }
 
   return (
-    <section className="mx-auto px-8 pt-18 container">
+    <section className="mx-auto px-8 pt-4 container">
       <ShopNowBar>
         <h2 className="text-2xl italic">shop, read and discover</h2>
       </ShopNowBar>
+
       <div className="gap-8 grid md:grid-cols-2 grid-rows-2 md:grid-rows-1 mt-6 pb-8">
+        {/* Left side blogs */}
         <ScrollContainer className="flex flex-col items-start place-items-start gap-8 md:gap-x-[21%] md:grid md:grid-cols-[48%_31%]">
+          {/* Blog 1 */}
           <div className="min-w-56 h-full">
-            <div className="">
+            <div>
               <img src={blogOne.image} alt={""} width={800} height={1067} />
             </div>
             <div className="space-y-2 mt-4 text-center">
               <Link href={`/blog/${blogOne.id}`}>
                 <h4
-                  className="font-medium hover:underline"
+                  className="
+                    font-medium 
+                    text-black 
+                    transition-all 
+                    duration-300 
+                    hover:text-[#f5acc8] 
+                    hover:underline 
+                    underline-offset-4 
+                    decoration-[#f5acc8]
+                  "
                   suppressHydrationWarning
                   dangerouslySetInnerHTML={{
                     __html: blogOne.title,
@@ -44,48 +56,65 @@ export function ShopReadAndDiscover({ blogs }: ShopReadAndDiscoverProps) {
             </div>
           </div>
 
+          {/* Blog 2 & 3 group */}
           <div className="flex flex-col gap-4">
-            {/* Blog 1 */}
-            <div className="">
+            {/* Blog 2 */}
+            <div>
               <div>
                 <img src={blogTwo.image} alt={""} width={800} height={1067} />
               </div>
-              <div>
-                <div className="flex gap-2 my-2">
-                  <Link href={`/blog/${blogTwo.id}`}>
-                    <div
-                      className="mx-auto font-medium text-center hover:underline"
-                      suppressHydrationWarning
-                      dangerouslySetInnerHTML={{
-                        __html: blogTwo.title,
-                      }}
-                    ></div>
-                  </Link>
-                </div>
+              <div className="flex gap-2 my-2">
+                <Link href={`/blog/${blogTwo.id}`}>
+                  <div
+                    className="
+                      mx-auto font-medium text-center
+                      text-black 
+                      transition-all 
+                      duration-300 
+                      hover:text-[#f5acc8] 
+                      hover:underline 
+                      underline-offset-4 
+                      decoration-[#f5acc8]
+                    "
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                      __html: blogTwo.title,
+                    }}
+                  ></div>
+                </Link>
               </div>
             </div>
 
-            {/* Blog 2 */}
+            {/* Blog 3 */}
             <div className="order-1 md:order-2">
               <div>
                 <img src={blogThree.image} alt={""} width={800} height={1067} />
               </div>
-              <div>
-                <div className="flex gap-2 my-2">
-                  <Link href={`/blog/${blogThree.id}`}>
-                    <div
-                      className="flex justify-center items-center gap-1 font-medium text-center"
-                      suppressHydrationWarning
-                      dangerouslySetInnerHTML={{
-                        __html: blogThree.title,
-                      }}
-                    ></div>
-                  </Link>
-                </div>
+              <div className="flex gap-2 my-2">
+                <Link href={`/blog/${blogThree.id}`}>
+                  <div
+                    className="
+                      flex justify-center items-center gap-1 font-medium text-center
+                      text-black 
+                      transition-all 
+                      duration-300 
+                      hover:text-[#f5acc8] 
+                      hover:underline 
+                      underline-offset-4 
+                      decoration-[#f5acc8]
+                    "
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                      __html: blogThree.title,
+                    }}
+                  ></div>
+                </Link>
               </div>
             </div>
           </div>
         </ScrollContainer>
+
+        {/* Right side large blog */}
         <div className="relative">
           <div className="absolute inset-0">
             <img
