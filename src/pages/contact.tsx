@@ -5,7 +5,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import React from "react";
 
-export const getStaticProps = (async (context) => {
+export const getStaticProps = (async () => {
   const { footer } = await getCommonData();
 
   return {
@@ -16,7 +16,7 @@ export const getStaticProps = (async (context) => {
   };
 }) satisfies GetStaticProps<any>;
 
-function InstagramIcon({ className = "w-6 h-6" }: { className?: string }) {
+function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -45,7 +45,7 @@ function InstagramIcon({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
-function MailIcon({ className = "w-6 h-6" }: { className?: string }) {
+function MailIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -73,7 +73,7 @@ function MailIcon({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
-function PhoneIcon({ className = "w-6 h-6" }: { className?: string }) {
+function PhoneIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -108,14 +108,12 @@ function SocialRow({
       rel="noopener noreferrer"
       className="group flex items-center gap-3"
     >
-      <div className="flex justify-center items-center bg-pink-50 rounded-full w-10 h-10 text-pink-500">
+      <div className="flex justify-center items-center bg-pink-50 rounded-full w-9 h-9 text-pink-500">
         {icon}
       </div>
-      <div className="text-left">
-        <p className="font-medium text-gray-900 group-hover:text-pink-500 text-sm transition-colors">
-          {label}
-        </p>
-      </div>
+      <p className="font-medium text-sm text-gray-800 group-hover:text-pink-500 transition-colors">
+        {label}
+      </p>
     </Link>
   );
 }
@@ -125,70 +123,77 @@ export default function ContactPageSplit(
 ) {
   return (
     <Layout footer={props.footer}>
-      <section className="mx-auto px-6 py-12 container">
+      <section className="mx-auto px-6 py-12 container text-sm">
         <div className="mx-auto max-w-5xl">
           <div className="items-start gap-12 grid grid-cols-1 md:grid-cols-2">
+            {/* Left: Advertising + Socials */}
             <div>
-              <h2 className="mb-6 font-medium text-2xl">
+              <h2 className="mb-4 font-semibold text-lg">
                 Advertising & Partnerships
               </h2>
               <div
-                className="mb-6"
+                className="mb-6 leading-relaxed text-gray-700 text-justify"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
-                  __html: props?.footer?.advertising || "",
+                  __html:
+                    props?.footer?.advertising ||
+                    `We love working with brands and businesses and are happy to create partnerships of all shapes and sizes. Please email: sidewalksstudio@gmail.com`,
                 }}
               ></div>
 
-              <div className="mt-8">
-                <h3 className="mb-4 font-medium text-xl">Our Socials</h3>
+              <div className="mt-6">
+                <h3 className="mb-3 font-medium text-base">Our Socials</h3>
                 <div className="flex flex-col gap-3">
                   <SocialRow
-                    icon={<InstagramIcon className="w-5 h-5" />}
-                    label="instagram /@atsidewalks"
+                    icon={<InstagramIcon />}
+                    label="@atsidewalks"
                     href="https://instagram.com/atsidewalks"
                   />
                   <SocialRow
-                    icon={<MailIcon className="w-5 h-5" />}
-                    label="gmail /@atsidewalks"
+                    icon={<MailIcon />}
+                    label="atsidewalks@gmail.com"
                     href="mailto:atsidewalks@gmail.com"
                   />
                   <SocialRow
-                    icon={<PhoneIcon className="w-5 h-5" />}
-                    label="phone /1234567890"
+                    icon={<PhoneIcon />}
+                    label="+91 1234567890"
                     href="tel:+911234567890"
                   />
                 </div>
               </div>
             </div>
 
+            {/* Right: Contact form */}
             <div>
-              <h3 className="mb-4 font-medium text-2xl">Contact us</h3>
+              <h3 className="mb-4 font-semibold text-lg">Contact us</h3>
               <div
-                className="mb-6"
+                className="mb-6 leading-relaxed text-gray-700 text-justify"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
-                  __html: props?.footer?.contact || "",
+                  __html:
+                    props?.footer?.contact ||
+                    `We love getting emails from readers. Please feel free to write to Joanna at hello@cupofjo.com. If you have a question, you can also take a look at our FAQ page — the answer may be waiting there for you.`,
                 }}
               ></div>
-              <form className="flex flex-col gap-4">
+
+              <form className="flex flex-col gap-4 text-sm">
                 <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
                   <input
                     aria-label="Name"
                     placeholder="Name"
-                    className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full"
+                    className="px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full text-sm"
                   />
                   <input
                     aria-label="Email"
                     placeholder="Email*"
-                    className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full"
+                    className="px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full text-sm"
                   />
                 </div>
 
                 <textarea
                   aria-label="Comment"
                   placeholder="Comment"
-                  className="px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full h-40"
+                  className="px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full h-36 text-sm"
                 />
 
                 <div className="flex justify-start">

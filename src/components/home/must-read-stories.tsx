@@ -11,16 +11,17 @@ export interface BlogProps {
 export function BlogCard({ className, blog }: BlogProps) {
   return (
     <div className="min-w-[354px] max-w-screen">
-      <div className={"h-[80%] w-full overflow-hidden"}>
+      <div className="h-[80%] w-full overflow-hidden">
         <img
           className="w-full h-full object-cover"
           src={blog.image}
-          alt={""}
+          alt=""
           width={800}
           height={1067}
           draggable={false}
         />
       </div>
+
       <div className="space-y-2 my-1 mt-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 font-medium">
@@ -32,13 +33,38 @@ export function BlogCard({ className, blog }: BlogProps) {
               }}
             ></span>
           </div>
+
+          {/* Pink hover for 'read now' link */}
           <div>
-            <a className="underline" href="">
+            <a
+              className="
+                underline 
+                text-black 
+                transition-all 
+                duration-300 
+                hover:text-[#f5acc8] 
+                decoration-[#f5acc8] 
+                underline-offset-4
+              "
+              href=""
+            >
               read now
             </a>
           </div>
         </div>
+
+        {/* Title hover effect */}
         <div
+          className="
+            font-medium
+            text-black 
+            transition-all 
+            duration-300 
+            hover:text-[#f5acc8] 
+            hover:underline 
+            underline-offset-4 
+            decoration-[#f5acc8]
+          "
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: blog.title,

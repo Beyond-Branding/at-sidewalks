@@ -11,13 +11,13 @@ export function NavLinkWithImage({ href = "#", image, title }: any) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 hover:text-pink-300 text-sm lowercase"
+      className="flex items-center gap-2 text-sm lowercase transition-colors duration-200 hover:text-pink-300"
     >
       <div className="size-8">
         <Image
           className="size-full"
           src={image}
-          alt="Beauty"
+          alt="Category"
           height={100}
           width={100}
         />
@@ -32,26 +32,23 @@ export function NavLinkWithPopover() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleRouteChange = (url: string, { shallow }: any) => {
-      setOpen(false);
-    };
-
+    const handleRouteChange = () => setOpen(false);
     router.events.on("routeChangeStart", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
+    return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [router]);
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
-        <button className="cursor-pointer">categories</button>
+        <button className="cursor-pointer transition-colors duration-200 hover:text-pink-300">
+          categories
+        </button>
       </Popover.Trigger>
+
       <Popover.Portal>
         <Popover.Content asChild sideOffset={16} align="start">
           <div
-            className={`z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12 shadow-lg rounded-md`}
+            className="z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12 shadow-lg rounded-md"
           >
             {categories.map((category) => (
               <NavLinkWithImage
@@ -84,15 +81,9 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = (url: string, { shallow }: any) => {
-      setOpen(false);
-    };
-
+    const handleRouteChange = () => setOpen(false);
     router.events.on("routeChangeStart", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
+    return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [router]);
 
   return (
@@ -103,11 +94,14 @@ export function Header() {
         }`}
       >
         <header className="grid grid-cols-3 mx-auto px-8 py-4 container">
-          {/* Navigation */}
+          {/* Left Nav */}
           <nav className="flex justify-between text-sm">
             <ul className="flex items-center gap-6">
               <li className="md:hidden">
-                <button onClick={() => setOpen((current) => !current)}>
+                <button
+                  onClick={() => setOpen((current) => !current)}
+                  className="transition-colors duration-200 hover:text-pink-300"
+                >
                   {open ? "close" : "menu"}
                 </button>
               </li>
@@ -116,6 +110,7 @@ export function Header() {
               </li>
             </ul>
           </nav>
+
           {/* Logo */}
           <Link className="h-10" href="/">
             <Image
@@ -126,14 +121,25 @@ export function Header() {
               height={656}
             />
           </Link>
-          {/* Navigation */}
+
+          {/* Right Nav */}
           <nav className="flex justify-end text-sm">
             <ul className="flex items-center gap-6">
               <li className="hidden md:block">
-                <Link href="/about">about</Link>
+                <Link
+                  href="/about"
+                  className="transition-colors duration-200 hover:text-pink-300"
+                >
+                  about
+                </Link>
               </li>
               <li className="hidden md:block">
-                <Link href="/contact">contact</Link>
+                <Link
+                  href="/contact"
+                  className="transition-colors duration-200 hover:text-pink-300"
+                >
+                  contact
+                </Link>
               </li>
             </ul>
           </nav>

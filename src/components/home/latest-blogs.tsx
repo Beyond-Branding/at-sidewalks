@@ -11,16 +11,26 @@ export function BlogCard({ blog }: { blog: Blog }) {
         <img
           className="w-full h-full object-cover"
           src={blog.image}
-          alt={""}
+          alt=""
           width={800}
           height={1067}
           draggable={false}
         />
       </div>
+
       <Link href={`/blog/${blog.id}`}>
-        <div className="space-y-2 mt-4 text-center hover:underline">
+        <div className="space-y-2 mt-4 text-center">
           <h4
-            className="font-medium"
+            className="
+              font-medium 
+              text-black 
+              transition-all 
+              duration-300 
+              hover:text-[#f5acc8] 
+              hover:underline 
+              underline-offset-4 
+              decoration-[#f5acc8]
+            "
             suppressHydrationWarning
             dangerouslySetInnerHTML={{
               __html: blog.title || "",
@@ -39,7 +49,7 @@ export function LastestBlogs({ blogs }: { blogs: Blog[] }) {
         <h2 className="text-2xl italic">latest blogs</h2>
       </ShopNowBar>
 
-      {/* Products */}
+      {/* Blog Cards Scroll */}
       <ScrollContainer className="pb-6 overflow-x-auto overflow-y-hidden cursor-grab select-none">
         <div className="flex gap-6 mt-6">
           {blogs.map((blog) => (
