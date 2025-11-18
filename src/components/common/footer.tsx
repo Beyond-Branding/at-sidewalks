@@ -1,10 +1,38 @@
+import { categories } from "@/constants/categories";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
+
+export function Categories() {
+  const [columnOne, columnTwo] = useMemo(() => {
+    /* Split the categories into two groups (4 and 4) */
+    return [categories.slice(0, 4), categories.slice(4, 8)];
+  }, []);
+
+  return (
+    <div>
+      <h4 className="mb-4 font-medium">categories</h4>
+      <ul className="space-y-4 grid grid-cols-1 md:grid-cols-2 lowercase">
+        {columnOne.map((category) => (
+          <li key={category.id}>
+            <Link href={category.href}>{category.title}</Link>
+          </li>
+        ))}
+
+        {columnTwo.map((category) => (
+          <li key={category.id}>
+            <Link href={category.href}>{category.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function NavLinks() {
   return (
     <div>
-      <h4 className="mb-4 font-medium">customer service</h4>
+      <h4 className="mb-4 font-medium">other links</h4>
       <ul className="space-y-4">
         <li>
           <Link href="/contact">contact us</Link>
@@ -45,54 +73,12 @@ export function Footer({ content }: FooterProps) {
       </div>
       <div className="flex flex-col">
         <div className="flex md:flex-row flex-col gap-8 mb-auto w-full">
-          <div className="flex-[30%] space-y-8">
-            <div>
-              <h3 className="mb-4 font-semibold">about</h3>
-
-              <div className="space-y-4">
-                <div className="rounded-full size-16 overflow-hidden shrink-0">
-                  <img
-                    src="/assets/author.jpg"
-                    className="size-full object-cover"
-                    alt=""
-                  />
-                </div>
-
-                <div
-                  className="text-sm"
-                  suppressHydrationWarning
-                  dangerouslySetInnerHTML={{
-                    __html: content?.about || "",
-                  }}
-                ></div>
-              </div>
+          <div className="gap-6 grid grid-cols-1 md:grid-cols-4">
+            <div className="md:col-span-2">
+              <Categories />
             </div>
-          </div>
-
-          <div className="md:flex-row flex-col flex-[70%] gap-6 grid grid-cols-1 md:grid-cols-3">
             <NavLinks />
 
-            <div className="flex-1 space-y-4 pr-8">
-              <div>
-                <h2 className="font-medium">contact</h2>
-                <div
-                  className="text-sm"
-                  suppressHydrationWarning
-                  dangerouslySetInnerHTML={{ __html: content?.contact || "" }}
-                ></div>
-              </div>
-
-              <div className="flex-1">
-                <h2 className="font-medium">advertising</h2>
-                <div
-                  className="text-sm"
-                  suppressHydrationWarning
-                  dangerouslySetInnerHTML={{
-                    __html: content?.advertising || "",
-                  }}
-                ></div>
-              </div>
-            </div>
             <div>
               <p className="mb-8 font-medium">subscribe to our newsletter</p>
               <input
@@ -111,27 +97,7 @@ export function Footer({ content }: FooterProps) {
 
         <div className="gap-4 grid md:grid-cols-2 grid-rows-2 md:grid-rows-1 my-12 pt-8 text-xs">
           <div>
-            <ul className="flex flex-wrap gap-x-12 gap-y-2">
-              <li>
-                <Link href="/about">about</Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy">privacy policy</Link>
-              </li>
-              <li>
-                <Link href="/accessibility">accessibility</Link>
-              </li>
-              <li>
-                <Link href="/terms-of-use">terms of use</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p>
-              ©2008-2025 Goop, Inc. All Rights Reserved. goop® is a registered
-              trademark of Goop, Inc. and is registered with the U.S. Patent and
-              Trademark Office
-            </p>
+            <p>©2025 At Sidewalks All Rights Reserved.</p>
           </div>
         </div>
       </div>

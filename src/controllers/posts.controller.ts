@@ -1,6 +1,7 @@
 import { Blog } from "@/constants/blogs";
 import { wp } from "@/lib/wp-client";
 import { getCategories } from "./categories.controller";
+import axios from "axios";
 
 export const getPosts = async (
   params = {
@@ -72,4 +73,12 @@ export const getPost = async (id: number) => {
   const post = await wp.posts().id(id);
 
   return post;
+};
+
+export const searchPosts = async (params = {}) => {
+  const response = await axios.get("/api/blogs", {
+    params,
+  });
+
+  return response.data;
 };

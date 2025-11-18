@@ -6,12 +6,13 @@ import { AnimatePresence } from "motion/react";
 import { categories } from "@/constants/categories";
 import { useRouter } from "next/router";
 import Sidebar from "./sidebar";
+import SearchDrawer from "./search-drawer";
 
 export function NavLinkWithImage({ href = "#", image, title }: any) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 text-sm lowercase transition-colors duration-200 hover:text-pink-300"
+      className="flex items-center gap-2 hover:text-pink-300 text-sm lowercase transition-colors duration-200"
     >
       <div className="size-8">
         <Image
@@ -40,16 +41,14 @@ export function NavLinkWithPopover() {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
-        <button className="cursor-pointer transition-colors duration-200 hover:text-pink-300">
+        <button className="hover:text-pink-300 transition-colors duration-200 cursor-pointer">
           categories
         </button>
       </Popover.Trigger>
 
       <Popover.Portal>
         <Popover.Content asChild sideOffset={16} align="start">
-          <div
-            className="z-[1000] grid grid-cols-2 grid-rows-2 bg-primary max-w-screen px-8 py-6 gap-y-6 gap-x-12 shadow-lg rounded-md"
-          >
+          <div className="z-[1000] gap-x-12 gap-y-6 grid grid-cols-2 grid-rows-2 bg-primary shadow-lg px-8 py-6 rounded-md max-w-screen">
             {categories.map((category) => (
               <NavLinkWithImage
                 key={category.title}
@@ -67,7 +66,8 @@ export function NavLinkWithPopover() {
 
 export function Header() {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] = useState(false);
+  const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
   const [isTransparent, setIsTransparent] = useState(true);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = () => setOpen(false);
+    const handleRouteChange = () => setIsCategoriesDrawerOpen(false);
     router.events.on("routeChangeStart", handleRouteChange);
     return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [router]);
@@ -99,10 +99,12 @@ export function Header() {
             <ul className="flex items-center gap-6">
               <li className="md:hidden">
                 <button
-                  onClick={() => setOpen((current) => !current)}
-                  className="transition-colors duration-200 hover:text-pink-300"
+                  onClick={() =>
+                    setIsCategoriesDrawerOpen((current) => !current)
+                  }
+                  className="hover:text-pink-300 transition-colors duration-200"
                 >
-                  {open ? "close" : "menu"}
+                  {isCategoriesDrawerOpen ? "close" : "menu"}
                 </button>
               </li>
               <li className="hidden md:block">
@@ -128,7 +130,7 @@ export function Header() {
               <li className="hidden md:block">
                 <Link
                   href="/about"
-                  className="transition-colors duration-200 hover:text-pink-300"
+                  className="hover:text-pink-300 transition-colors duration-200"
                 >
                   about
                 </Link>
@@ -136,10 +138,24 @@ export function Header() {
               <li className="hidden md:block">
                 <Link
                   href="/contact"
-                  className="transition-colors duration-200 hover:text-pink-300"
+                  className="hover:text-pink-300 transition-colors duration-200"
                 >
                   contact
                 </Link>
+              </li>
+              <li className="flex">
+                <button
+                  className="m-auto"
+                  onClick={() => setIsSearchDrawerOpen(true)}
+                >
+                  <Image
+                    className="m-auto size-4"
+                    src="/assets/ui/search.svg"
+                    height={48}
+                    width={48}
+                    alt="Search Button"
+                  />
+                </button>
               </li>
             </ul>
           </nav>
@@ -147,7 +163,15 @@ export function Header() {
       </div>
 
       <AnimatePresence>
-        <Sidebar isOpen={open} onClose={() => setOpen(false)} />
+        <Sidebar
+          isOpen={isCategoriesDrawerOpen}
+          onClose={() => setIsCategoriesDrawerOpen(false)}
+        />
+
+        <SearchDrawer
+          isOpen={isSearchDrawerOpen}
+          onClose={() => setIsSearchDrawerOpen(false)}
+        />
       </AnimatePresence>
     </>
   );
