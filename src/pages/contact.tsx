@@ -3,6 +3,7 @@ import Layout from "@/components/common/layout";
 import { getCommonData } from "@/controllers/common.controller";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 export const getStaticProps = (async () => {
@@ -16,79 +17,36 @@ export const getStaticProps = (async () => {
   };
 }) satisfies GetStaticProps<any>;
 
-function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
+function InstagramIcon() {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="2"
-        y="2"
-        width="20"
-        height="20"
-        rx="5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M12 7.25a4.75 4.75 0 100 9.5 4.75 4.75 0 000-9.5z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" />
-    </svg>
+    <Image
+      src="/assets/socials/instagram.png"
+      alt="Instagram"
+      width={24}
+      height={24}
+    />
   );
 }
 
-function MailIcon({ className = "w-5 h-5" }: { className?: string }) {
+function MailIcon() {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="2"
-        y="4"
-        width="20"
-        height="16"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M3 7.5l8.5 6L20 7.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <Image
+      src="/assets/socials/gmail.png"
+      alt="Instagram"
+      width={24}
+      height={24}
+    />
   );
 }
 
-function PhoneIcon({ className = "w-5 h-5" }: { className?: string }) {
+function PhoneIcon() {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 012 4.18 2 2 0 014 2h3a2 2 0 012 1.72c.12 1.07.35 2.12.68 3.11a2 2 0 01-.45 2.11L8.09 9.91a15.08 15.08 0 006 6l1.97-1.97a2 2 0 012.11-.45c.99.33 2.04.56 3.11.68A2 2 0 0122 16.92z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <Image
+      src="/assets/socials/phone.png"
+      alt="Instagram"
+      width={24}
+      height={24}
+    />
   );
 }
 
@@ -108,12 +66,7 @@ function SocialRow({
       rel="noopener noreferrer"
       className="group flex items-center gap-3"
     >
-      <div className="flex justify-center items-center bg-pink-50 rounded-full w-9 h-9 text-pink-500">
-        {icon}
-      </div>
-      <p className="font-medium text-sm text-gray-800 group-hover:text-pink-500 transition-colors">
-        {label}
-      </p>
+      {icon}
     </Link>
   );
 }
@@ -123,7 +76,20 @@ export default function ContactPageSplit(
 ) {
   return (
     <Layout footer={props.footer}>
-      <section className="mx-auto px-6 py-12 container text-sm">
+      <section className="mx-auto mt-12 py-2 container" id="hero-section">
+        <div className="w-full">
+          <Image
+            src="/assets/contact_banner.png"
+            alt="About Banner"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-contain"
+            priority
+          />
+        </div>
+      </section>
+
+      <section className="mx-auto px-6 py-12 text-sm container">
         <div className="mx-auto max-w-5xl">
           <div className="items-start gap-12 grid grid-cols-1 md:grid-cols-2">
             {/* Left: Advertising + Socials */}
@@ -132,7 +98,7 @@ export default function ContactPageSplit(
                 Advertising & Partnerships
               </h2>
               <div
-                className="mb-6 leading-relaxed text-gray-700 text-justify"
+                className="mb-6 text-gray-700 text-justify leading-relaxed"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                   __html:
@@ -143,7 +109,7 @@ export default function ContactPageSplit(
 
               <div className="mt-6">
                 <h3 className="mb-3 font-medium text-base">Our Socials</h3>
-                <div className="flex flex-col gap-3">
+                <div className="flex gap-6">
                   <SocialRow
                     icon={<InstagramIcon />}
                     label="@atsidewalks"
@@ -167,7 +133,7 @@ export default function ContactPageSplit(
             <div>
               <h3 className="mb-4 font-semibold text-lg">Contact us</h3>
               <div
-                className="mb-6 leading-relaxed text-gray-700 text-justify"
+                className="mb-6 text-gray-700 text-justify leading-relaxed"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                   __html:
