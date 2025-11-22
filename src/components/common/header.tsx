@@ -143,6 +143,14 @@ export function Header() {
                   contact
                 </Link>
               </li>
+              <li className="hidden md:block">
+                <Link
+                  href="/blogs"
+                  className="hover:text-pink-300 transition-colors duration-200"
+                >
+                  blogs
+                </Link>
+              </li>
               <li className="flex">
                 <button
                   className="m-auto"

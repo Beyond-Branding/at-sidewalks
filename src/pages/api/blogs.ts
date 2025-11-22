@@ -14,7 +14,7 @@ export default async function handler(
       blogs = await wp.posts().search(search);
     } else {
       /* Return the blogs */
-      blogs = await wp.posts().list();
+      blogs = await wp.posts().get();
     }
 
     for (const blog of blogs) {

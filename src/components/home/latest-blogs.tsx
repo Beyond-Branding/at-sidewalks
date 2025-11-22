@@ -5,11 +5,17 @@ import { Blog } from "@/constants/blogs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export function BlogCard({ blog }: { blog: Blog }) {
+export function BlogCard({
+  blog,
+  className = "min-w-[354px]",
+}: {
+  blog: Blog;
+  className?: string;
+}) {
   const router = useRouter();
 
   return (
-    <div className="min-w-[354px]">
+    <div className={className}>
       <div
         className="h-[80%] overflow-hidden cursor-pointer"
         onClick={() => router.push(`/blog/${blog.id}`)}

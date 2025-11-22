@@ -36,3 +36,11 @@ body {
 .blog-container p {
   @apply mb-4;
 }
+
+.blog-container ul {
+  @apply list-disc list-inside;
+}
+
+.blog-container ol {
+  @apply list-decimal list-inside;
+}

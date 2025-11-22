@@ -5,14 +5,14 @@ import axios from "axios";
 
 export const getPosts = async (
   params = {
-    perPage: 10,
+    per_page: 10,
   } as any
 ): Promise<Blog[]> => {
   const categories = await getCategories();
   let response = wp.posts();
 
   for (const key in params) {
-    response.param(key, `${params[key]}`);
+    response = response.param(key, `${params[key]}`);
   }
 
   response = await response;
