@@ -14,14 +14,14 @@ export function Categories() {
       <h4 className="mb-4 font-medium">categories</h4>
       <ul className="space-y-4 grid grid-cols-1 md:grid-cols-2 lowercase">
         {columnOne.map((category) => (
-          <li key={category.id}>
-            <Link href={category.href}>{category.title}</Link>
+          <li key={`/category/${category.id}`}>
+            <Link href={`/category/${category.id}`}>{category.title}</Link>
           </li>
         ))}
 
         {columnTwo.map((category) => (
-          <li key={category.id}>
-            <Link href={category.href}>{category.title}</Link>
+          <li key={`/category/${category.id}`}>
+            <Link href={`/category/${category.id}`}>{category.title}</Link>
           </li>
         ))}
       </ul>
@@ -80,17 +80,12 @@ export function Footer({ content }: FooterProps) {
             <NavLinks />
 
             <div>
-              <p className="mb-8 font-medium">subscribe to our newsletter</p>
-              <input
-                type="email"
-                placeholder="your email"
-                className="mb-2 px-4 pb-4 border-gray-200 border-b-[1px] focus-within:outline-0 w-full"
-              />
-              <p className="w-[75%] text-xs">
-                by clicking "submit," you agree to receive emails from goop and
-                accept our web terms of use and privacy and cookie policy.
-                *Terms apply.
-              </p>
+              <iframe
+                src="https://yachna.substack.com/embed"
+                // style="border:1px solid #EEE; background:white;"
+                frameBorder="0"
+                scrolling="no"
+              ></iframe>
             </div>
           </div>
         </div>
