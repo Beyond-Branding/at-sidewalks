@@ -5,7 +5,6 @@ import { useMemo } from "react";
 
 export function Categories() {
   const [columnOne, columnTwo] = useMemo(() => {
-    /* Split the categories into two groups (4 and 4) */
     return [categories.slice(0, 4), categories.slice(4, 8)];
   }, []);
 
@@ -15,13 +14,17 @@ export function Categories() {
       <ul className="space-y-4 grid grid-cols-1 md:grid-cols-2 lowercase">
         {columnOne.map((category) => (
           <li key={category.id}>
-            <Link href={category.href}>{category.title}</Link>
+            <Link href={`/category/${category.id}`} className="transition-colors hover:text-pink-300">
+              {category.title}
+            </Link>
           </li>
         ))}
 
         {columnTwo.map((category) => (
           <li key={category.id}>
-            <Link href={category.href}>{category.title}</Link>
+            <Link href={`/category/${category.id}`} className="transition-colors hover:text-pink-300">
+              {category.title}
+            </Link>
           </li>
         ))}
       </ul>
@@ -35,16 +38,16 @@ export function NavLinks() {
       <h4 className="mb-4 font-medium">other links</h4>
       <ul className="space-y-4">
         <li>
-          <Link href="/contact">contact us</Link>
+          <Link href="/contact" className="transition-colors hover:text-pink-300">contact us</Link>
         </li>
         <li>
-          <Link href="/privacy-policy">privacy policy</Link>
+          <Link href="/privacy-policy" className="transition-colors hover:text-pink-300">privacy policy</Link>
         </li>
         <li>
-          <Link href="/terms-of-use">terms of use</Link>
+          <Link href="/terms-of-use" className="transition-colors hover:text-pink-300">terms of use</Link>
         </li>
         <li>
-          <Link href="/faq">faq</Link>
+          <Link href="/faq" className="transition-colors hover:text-pink-300">faq</Link>
         </li>
       </ul>
     </div>
