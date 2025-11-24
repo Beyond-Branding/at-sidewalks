@@ -8,6 +8,7 @@ import { categories } from "@/constants/categories";
 import { getCategory } from "@/controllers/categories.controller";
 import { getMedia } from "@/controllers/media.controller";
 import { getPosts } from "@/controllers/posts.controller";
+import React, { useRef } from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = categories.map((cat: any) => ({
@@ -23,7 +24,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = (async (context) => {
   const { footer } = await getCommonData();
 
-  /* Page specific data */
   const { category: categoryId } = context.params as { category: string };
   const category = await getCategory(+categoryId);
 
@@ -56,6 +56,24 @@ export default function CategoryPage(
 ) {
   const router = useRouter();
 
+  const blogsRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBlogs = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    e?.preventDefault();
+    blogsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", "#blogs");
+    }
+  };
+
+  if (router.isFallback) {
+    return (
+      <Layout footer={props.footer}>
+        <div className="min-h-screen flex items-center justify-center">Loading...</div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout footer={props.footer}>
       <div>
@@ -80,23 +98,41 @@ export default function CategoryPage(
               </div>
 
               <div className="space-y-4">
-                <Button>Read More</Button>
+                <a href="#blogs" onClick={scrollToBlogs} aria-label="Read more - scroll to blogs">
+                  <Button>Read More</Button>
+                </a>
               </div>
             </div>
           </div>
-          {props?.category?.image && (
+
+          {props?.category?.image ? (
             <div className="absolute inset-0">
               <img
                 className="w-full h-full object-cover"
                 src={props?.category?.image}
-                alt="Beauty"
+                alt={props?.category?.title || "Category hero"}
+                height={2048}
+                width={1365}
+              />
+            </div>
+          ) : (
+            <div className="absolute inset-0">
+              <img
+                className="w-full h-full object-cover"
+                src={"/mnt/data/5338fc7e-8e45-4344-87eb-06134dc7dc05.png"}
+                alt="Fallback hero"
                 height={2048}
                 width={1365}
               />
             </div>
           )}
         </section>
-        {props?.blogs?.length > 0 && <LastestBlogs blogs={props.blogs} />}
+
+        {props?.blogs?.length > 0 && (
+          <div id="blogs" ref={blogsRef}>
+            <LastestBlogs blogs={props.blogs} />
+          </div>
+        )}
       </div>
     </Layout>
   );
