@@ -85,7 +85,6 @@ export default function SearchDrawer({ isOpen, onClose }: any) {
                   className="block"
                 >
                   <div className="flex gap-6">
-                    os
                     <div className="w-28 h-36 overflow-hidden">
                       <img
                         className="w-full h-full object-cover"
