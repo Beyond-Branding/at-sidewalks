@@ -79,12 +79,14 @@ export function Footer({ content }: FooterProps) {
             </div>
             <NavLinks />
 
-            <div>
+            <div className="w-full md:w-auto flex justify-start md:block">
               <iframe
                 src="https://yachna.substack.com/embed"
-                // style="border:1px solid #EEE; background:white;"
+                className="block w-full max-w-[420px] md:w-auto md:max-w-none mx-0"
+                style={{ display: "block", margin: 0 }}
                 frameBorder="0"
                 scrolling="no"
+                title="Substack subscribe"
               ></iframe>
             </div>
           </div>
