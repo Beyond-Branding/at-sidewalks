@@ -12,7 +12,7 @@ export function HeroCard() {
           preload="auto"
           loop
           className="bg-center size-full object-cover"
-          src="https://res.cloudinary.com/daoju0r3c/video/upload/v1762443723/d123_1_qykwa2.mp4"
+          src="https://res.cloudinary.com/daoju0r3c/video/upload/v1764602598/1024_2_3_1_pltmcw.mp4"
           poster="/logo.svg"
         />
       </div>
