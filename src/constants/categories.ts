@@ -33,7 +33,7 @@ export const categories = [
   {
     id: 29,
     href: "#",
-    image: "/assets/categories/dating&relationships.svg",
+    image: "/assets/categories/dating.png",
     title: "Dating & Relationships",
   },
   {

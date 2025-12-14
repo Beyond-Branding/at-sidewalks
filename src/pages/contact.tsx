@@ -132,15 +132,19 @@ export default function ContactPageSplit(
             {/* Right: Contact form */}
             <div>
               <h3 className="mb-4 font-semibold text-lg">Contact us</h3>
-              <div
-                className="mb-6 text-gray-700 text-justify leading-relaxed"
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                  __html:
-                    props?.footer?.contact ||
-                    `We love getting emails from readers. Please feel free to write to Joanna at hello@cupofjo.com. If you have a question, you can also take a look at our FAQ page — the answer may be waiting there for you.`,
-                }}
-              ></div>
+              <div className="mb-6 text-gray-700 text-justify leading-relaxed">
+                Every message I receive feels like a small gift. Your thoughts,
+                stories, and ideas mean more than you know. If you ever feel
+                called to reach out, even just to say hello- my inbox is always
+                open. Write to me anytime at{" "}
+                <Link
+                  href="mailto:atsidewalks@gmail.com"
+                  className="hover:text-pink-500 hover:underline"
+                >
+                  atsidewalks@gmail.com
+                </Link>
+                .
+              </div>
 
               <form className="flex flex-col gap-4 text-sm">
                 <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
