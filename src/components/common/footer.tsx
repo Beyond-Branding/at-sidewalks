@@ -5,7 +5,6 @@ import { useMemo } from "react";
 
 export function Categories() {
   const [columnOne, columnTwo] = useMemo(() => {
-    /* Split the categories into two groups (4 and 4) */
     return [categories.slice(0, 4), categories.slice(4, 8)];
   }, []);
 
@@ -18,7 +17,6 @@ export function Categories() {
             <Link href={`/category/${category.id}`}>{category.title}</Link>
           </li>
         ))}
-
         {columnTwo.map((category) => (
           <li key={`/category/${category.id}`}>
             <Link href={`/category/${category.id}`}>{category.title}</Link>
@@ -59,6 +57,18 @@ export interface FooterProps {
   };
 }
 
+function InstagramIcon() {
+  return <Image src="/assets/socials/instagram.png" alt="Instagram" width={24} height={24} />;
+}
+
+function MailIcon() {
+  return <Image src="/assets/socials/gmail.png" alt="Mail" width={24} height={24} />;
+}
+
+function PhoneIcon() {
+  return <Image src="/assets/socials/phone.png" alt="Phone" width={24} height={24} />;
+}
+
 export function Footer({ content }: FooterProps) {
   return (
     <footer className="relative flex pmask-t-to-12 mx-auto mt-16 px-8 h-fit container">
@@ -73,13 +83,14 @@ export function Footer({ content }: FooterProps) {
       </div>
       <div className="flex flex-col">
         <div className="flex md:flex-row flex-col gap-8 mb-auto w-full">
-          <div className="gap-6 grid grid-cols-1 md:grid-cols-4">
+          <div className="gap-6 grid grid-cols-1 md:grid-cols-4 w-full">
             <div className="md:col-span-2">
               <Categories />
             </div>
             <NavLinks />
 
-            <div className="w-full md:w-auto flex justify-start md:block">
+            {/* Substack + Social Icons Container */}
+            <div className="w-full md:w-auto flex flex-col gap-2">
               <iframe
                 src="https://yachna.substack.com/embed"
                 className="block w-full max-w-[420px] md:w-auto md:max-w-none mx-0"
@@ -88,6 +99,19 @@ export function Footer({ content }: FooterProps) {
                 scrolling="no"
                 title="Substack subscribe"
               ></iframe>
+
+              {/* Social Icons */}
+              <div className="flex gap-6 mt-2 justify-center">
+                <Link href="https://instagram.com/atsidewalks" target="_blank" rel="noopener noreferrer">
+                  <InstagramIcon />
+                </Link>
+                <Link href="mailto:atsidewalks@gmail.com" target="_blank" rel="noopener noreferrer">
+                  <MailIcon />
+                </Link>
+                <Link href="tel:+911234567890" target="_blank" rel="noopener noreferrer">
+                  <PhoneIcon />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
