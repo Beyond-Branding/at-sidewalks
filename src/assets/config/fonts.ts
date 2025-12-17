@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Over_the_Rainbow } from "next/font/google";
+import { Over_the_Rainbow, Cormorant } from "next/font/google";
 
 export const neueuHaasDisplayProFont = localFont({
   src: [
@@ -32,4 +32,10 @@ export const overTheRainbowFont = Over_the_Rainbow({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-over-the-rainbow",
+});
+
+export const cormorantFont = Cormorant({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-cormorant",
 });
