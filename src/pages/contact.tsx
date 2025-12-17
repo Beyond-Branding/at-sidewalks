@@ -71,6 +71,54 @@ function SocialRow({
   );
 }
 
+export function ContactForm() {
+  return (
+    <div className="mx-auto container">
+      <div className="mx-auto max-w-[55ch]">
+        <h3 className="mb-6 font-medium text-3xl uppercase">Contact us</h3>
+        <p className="mb-6">
+          Every message I receive feels like a small gift. Your thoughts,
+          stories, and ideas mean more than you know. If you ever feel called to
+          reach out, even just to say hello- my inbox is always open. Write to
+          me anytime at{" "}
+          <Link
+            href="mailto:atsidewalks@gmail.com"
+            className="hover:text-pink-500 hover:underline"
+          >
+            atsidewalks@gmail.com
+          </Link>
+          .
+        </p>
+      </div>
+
+      <div className="mx-auto mt-14 max-w-[720px]">
+        <form className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
+            <div className="w-full">
+              <input placeholder="Name" className="px-4 py-2 border-1 w-full" />
+            </div>
+            <div className="w-full">
+              <input
+                placeholder="Email*"
+                className="px-4 py-2 border-1 w-full"
+              />
+            </div>
+          </div>
+          <div className="col-span-2">
+            <textarea
+              placeholder="Comment"
+              className="px-4 py-2 border-1 w-full h-24"
+            />
+          </div>
+          <div className="flex justify-start col-span-2">
+            <Button>Send</Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 export default function ContactPageSplit(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
@@ -89,90 +137,54 @@ export default function ContactPageSplit(
         </div>
       </section>
 
-      <section className="mx-auto px-6 py-12 text-sm container">
-        <div className="mx-auto max-w-5xl">
-          <div className="items-start gap-12 grid grid-cols-1 md:grid-cols-2">
-            {/* Left: Advertising + Socials */}
-            <div>
-              <h2 className="mb-4 font-semibold text-lg">
-                Advertising & Partnerships
-              </h2>
-              <div
-                className="mb-6 text-gray-700 text-justify leading-relaxed"
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                  __html:
-                    props?.footer?.advertising ||
-                    `We love working with brands and businesses and are happy to create partnerships of all shapes and sizes. Please email: sidewalksstudio@gmail.com`,
-                }}
-              ></div>
+      <section className="mx-auto px-8 py-12 text-center container">
+        <div className="mx-auto mb-16 max-w-[55ch]">
+          <h2 className="mb-8 font-medium text-3xl uppercase">
+            ADVERTISING & PARTNERSHIPS
+          </h2>
+          <div
+            className="mb-6 text-gray-700 text-center leading-relaxed"
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+              __html:
+                props?.footer?.advertising ||
+                `We love working with brands and businesses and are happy to create partnerships of all shapes and sizes. Please email: sidewalksstudio@gmail.com`,
+            }}
+          />
+        </div>
 
-              <div className="mt-6">
-                <h3 className="mb-3 font-medium text-base">Our Socials</h3>
-                <div className="flex gap-6">
-                  <SocialRow
-                    icon={<InstagramIcon />}
-                    label="@atsidewalks"
-                    href="https://instagram.com/atsidewalks"
-                  />
-                  <SocialRow
-                    icon={<MailIcon />}
-                    label="atsidewalks@gmail.com"
-                    href="mailto:atsidewalks@gmail.com"
-                  />
-                  <SocialRow
-                    icon={<PhoneIcon />}
-                    label="+91 1234567890"
-                    href="tel:+911234567890"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Contact form */}
-            <div>
-              <h3 className="mb-4 font-semibold text-lg">Contact us</h3>
-              <div className="mb-6 text-gray-700 text-justify leading-relaxed">
-                Every message I receive feels like a small gift. Your thoughts,
-                stories, and ideas mean more than you know. If you ever feel
-                called to reach out, even just to say hello- my inbox is always
-                open. Write to me anytime at{" "}
-                <Link
-                  href="mailto:atsidewalks@gmail.com"
-                  className="hover:text-pink-500 hover:underline"
-                >
-                  atsidewalks@gmail.com
-                </Link>
-                .
-              </div>
-
-              <form className="flex flex-col gap-4 text-sm">
-                <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
-                  <input
-                    aria-label="Name"
-                    placeholder="Name"
-                    className="px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full text-sm"
-                  />
-                  <input
-                    aria-label="Email"
-                    placeholder="Email*"
-                    className="px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full text-sm"
-                  />
-                </div>
-
-                <textarea
-                  aria-label="Comment"
-                  placeholder="Comment"
-                  className="px-4 py-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-200 w-full h-36 text-sm"
-                />
-
-                <div className="flex justify-start">
-                  <Button>Send</Button>
-                </div>
-              </form>
+        <div className="mx-auto mb-16 max-w-[55ch]">
+          <h2 className="mb-8 font-medium text-3xl uppercase">SOCIALS</h2>
+          <div className="mb-6 text-gray-700 text-center leading-relaxed">
+            {" "}
+            {/* Social Icons */}
+            <div className="flex justify-center gap-6 mt-12">
+              <Link
+                href="https://instagram.com/atsidewalks"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstagramIcon />
+              </Link>
+              <Link
+                href="mailto:atsidewalks@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MailIcon />
+              </Link>
+              <Link
+                href="tel:+911234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <PhoneIcon />
+              </Link>
             </div>
           </div>
         </div>
+
+        <ContactForm />
       </section>
     </Layout>
   );
