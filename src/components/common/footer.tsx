@@ -83,8 +83,8 @@ function PhoneIcon() {
 export function Footer({ content }: FooterProps) {
   return (
     <footer>
-      <div className="bg-rose-50 py-10">
-        <div className="mx-auto container">
+      <div className="bg-rose-50 py-10 w-full">
+        <div className="mx-auto container px-0 sm:px-4">
           <div className="space-y-6 text-rose-300/70 text-center">
             <h4 className="font-cormorant text-4xl">Join the SW Family!</h4>
             <p>Sign up for exclusive updates and so much more!</p>
