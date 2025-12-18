@@ -11,13 +11,9 @@ import { getPosts } from "@/controllers/posts.controller";
 import React, { useRef } from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = categories.map((cat: any) => ({
-    params: { category: `${cat.id}` },
-  }));
-
   return {
-    paths,
-    fallback: true,
+    paths: [],
+    fallback: "blocking",
   };
 };
 

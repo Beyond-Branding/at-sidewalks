@@ -7,31 +7,10 @@ import { getMedia } from "@/controllers/media.controller";
 import { getPost, getPosts } from "@/controllers/posts.controller";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 
-export const getStaticPaths: GetStaticPaths<any> = async () => {
-  let page = 1;
-  let allPosts = [] as any[];
-
-  while (true) {
-    try {
-      const posts = await getPosts({
-        per_page: 10,
-        page: page,
-      });
-      if (!posts.length) break;
-      allPosts = [...allPosts, ...posts];
-      page++;
-    } catch (e) {
-      break;
-    }
-  }
-
-  const paths = allPosts.map((post) => ({
-    params: { blog: `${post.id}` },
-  }));
-
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths,
-    fallback: true,
+    paths: [],
+    fallback: "blocking",
   };
 };
 
