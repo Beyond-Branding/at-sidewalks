@@ -93,24 +93,28 @@ export function ContactForm() {
 
       <div className="mx-auto mt-14 max-w-[720px]">
         <form className="flex flex-col gap-4">
-          <div className="flex flex-col gap-4">
-            <div className="w-full">
-              <input placeholder="Name" className="px-4 py-2 border-1 w-full" />
-            </div>
-            <div className="w-full">
-              <input
-                placeholder="Email*"
-                className="px-4 py-2 border-1 w-full"
-              />
-            </div>
-          </div>
-          <div className="col-span-2">
-            <textarea
-              placeholder="Comment"
-              className="px-4 py-2 border-1 w-full h-24"
+          <div className="flex gap-4">
+            <input
+              placeholder="Name"
+              className="px-4 py-2 border w-1/2"
+            />
+            <input
+              placeholder="Email*"
+              className="px-4 py-2 border w-1/2"
             />
           </div>
-          <div className="flex justify-start col-span-2">
+
+          <input
+            placeholder="Phone number"
+            className="px-4 py-2 border w-full"
+          />
+
+          <textarea
+            placeholder="Comment"
+            className="px-4 py-2 border w-full h-24"
+          />
+
+          <div className="flex justify-start">
             <Button>Send</Button>
           </div>
         </form>
@@ -138,7 +142,9 @@ export default function ContactPageSplit(
       </section>
 
       <section className="mx-auto px-8 py-12 text-center container">
-        <div className="mx-auto mb-16 max-w-[55ch]">
+        <ContactForm />
+
+        <div className="mx-auto mb-16 max-w-[55ch] mt-16">
           <h2 className="mb-8 font-medium text-3xl uppercase">
             ADVERTISING & PARTNERSHIPS
           </h2>
@@ -153,11 +159,10 @@ export default function ContactPageSplit(
           />
         </div>
 
+        {/* SOCIALS */}
         <div className="mx-auto mb-16 max-w-[55ch]">
           <h2 className="mb-8 font-medium text-3xl uppercase">SOCIALS</h2>
           <div className="mb-6 text-gray-700 text-center leading-relaxed">
-            {" "}
-            {/* Social Icons */}
             <div className="flex justify-center gap-6 mt-12">
               <Link
                 href="https://instagram.com/atsidewalks"
@@ -183,8 +188,6 @@ export default function ContactPageSplit(
             </div>
           </div>
         </div>
-
-        <ContactForm />
       </section>
     </Layout>
   );
