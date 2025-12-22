@@ -28,6 +28,17 @@ function InstagramIcon() {
   );
 }
 
+function SubstackIcon() {
+  return (
+    <Image
+      src="/assets/socials/substack.svg"
+      alt="Substack"
+      width={24}
+      height={22}
+    />
+  );
+}
+
 function MailIcon() {
   return (
     <Image
@@ -171,6 +182,13 @@ export default function ContactPageSplit(
               >
                 <InstagramIcon />
               </Link>
+              <Link
+                  href="https://yachna.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                 <SubstackIcon />
+                </Link>
               <Link
                 href="mailto:atsidewalks@gmail.com"
                 target="_blank"
