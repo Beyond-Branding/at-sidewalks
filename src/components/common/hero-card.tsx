@@ -25,7 +25,7 @@ export function HeroCard() {
           preload="auto"
           loop
           className="block md:hidden bg-center size-full object-cover"
-          src=""  
+          src="https://res.cloudinary.com/daoju0r3c/video/upload/v1766487390/BB_xsdnxk.mp4"  
           poster="/logo.svg"
         />
 
