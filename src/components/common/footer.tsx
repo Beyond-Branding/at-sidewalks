@@ -29,7 +29,7 @@ export function Categories() {
 
 export function NavLinks() {
   return (
-    <div>
+    <div className="mt-8 md:mt-0">
       <h4 className="mb-4 font-medium">other links</h4>
       <ul className="space-y-4 lowercase">
         <li>
@@ -48,7 +48,7 @@ export function NavLinks() {
 
 export function ConnectLinks() {
   return (
-    <div>
+    <div className="mt-8 md:mt-0">
       <h4 className="mb-4 font-medium">connect</h4>
       <ul className="space-y-4 lowercase">
         <li>
