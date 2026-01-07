@@ -12,7 +12,7 @@ import { getPosts, getStickyPosts } from "@/controllers/posts.controller";
 
 import ComingSoonPage from "./comingsoon";
 
-const LAUNCH_TIME = new Date(2026, 0, 7, 21, 0, 0).getTime();
+const LAUNCH_TIME = new Date(2026, 0, 8, 21, 0, 0).getTime();
 
 export const getStaticProps = (async () => {
   const { footer } = await getCommonData();
