@@ -15,7 +15,7 @@ const ComingSoonPage = () => {
   useEffect(() => {
     setMounted(true);
 
-    const targetDate = new Date(2026, 0, 7, 21, 0, 0);
+    const targetDate = new Date(2026, 0, 8, 21, 0, 0);
 
     const timer = setInterval(() => {
       const now = Date.now();
