@@ -1,16 +1,22 @@
+import { useEffect, useState } from "react";
+
 import { HeroCard } from "@/components/common/hero-card";
 import { LastestBlogs } from "@/components/home/latest-blogs";
 import { ShopReadAndDiscover } from "@/components/home/shop-and-discover";
 import { MustReadStories } from "@/components/home/must-read-stories";
 import Layout from "@/components/common/layout";
+
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { getCommonData } from "@/controllers/common.controller";
 import { getPosts, getStickyPosts } from "@/controllers/posts.controller";
 
-export const getStaticProps = (async (context) => {
+import ComingSoonPage from "./comingsoon";
+
+const LAUNCH_TIME = new Date(2026, 0, 7, 21, 0, 0).getTime();
+
+export const getStaticProps = (async () => {
   const { footer } = await getCommonData();
 
-  /* Page specific data */
   const latestBlogs = await getPosts();
   const stickyBlogs = await getStickyPosts();
   const mustReadStories = await getPosts({
@@ -32,6 +38,24 @@ export const getStaticProps = (async (context) => {
 export default function HomePage(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
+  const [isLive, setIsLive] = useState(false);
+
+  useEffect(() => {
+    const checkLaunch = () => {
+      setIsLive(Date.now() >= LAUNCH_TIME);
+    };
+
+    checkLaunch();
+
+    const interval = setInterval(checkLaunch, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!isLive) {
+    return <ComingSoonPage />;
+  }
+
   return (
     <Layout footer={props.footer}>
       <div>

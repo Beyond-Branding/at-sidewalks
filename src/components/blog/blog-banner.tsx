@@ -34,12 +34,13 @@ export default function BlogBanner({
                   __html: blog?.title?.rendered || "",
                 }}
               ></h2>
-              <p
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                  __html: blog?.excerpt?.rendered || "",
-                }}
-              ></p>
+              <div
+  className="prose prose-neutral max-w-none"
+  suppressHydrationWarning
+  dangerouslySetInnerHTML={{
+    __html: blog?.excerpt?.rendered || "",
+  }}
+/>
             </div>
             <div>
               <p>{author?.name}</p>

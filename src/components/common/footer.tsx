@@ -72,9 +72,6 @@ export function ConnectLinks() {
         <li>
           <Link href="mailto:atsidewalks@gmail.com">gmail</Link>
         </li>
-        <li>
-          <Link href="tel:+911234567890">phone</Link>
-        </li>
       </ul>
     </div>
   );
@@ -102,12 +99,6 @@ function InstagramIcon() {
 function MailIcon() {
   return (
     <Image src="/assets/socials/gmail.png" alt="Mail" width={24} height={24} />
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <Image src="/assets/socials/phone.png" alt="Phone" width={24} height={24} />
   );
 }
 
@@ -172,18 +163,11 @@ export function Footer({ content }: FooterProps) {
               >
                 <MailIcon />
               </Link>
-              <Link
-                href="tel:+911234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <PhoneIcon />
-              </Link>
             </div>
           </div>
 
           <div className="mb-12 pt-4 text-xs text-center">
-            <p>©2025 At Sidewalks All Rights Reserved.</p>
+            <p>© 2026 At Sidewalks® All rights reserved. Site designed and developed by Beyond Branding</p>
           </div>
         </div>
       </div>

@@ -50,17 +50,6 @@ function MailIcon() {
   );
 }
 
-function PhoneIcon() {
-  return (
-    <Image
-      src="/assets/socials/phone.png"
-      alt="Instagram"
-      width={24}
-      height={24}
-    />
-  );
-}
-
 function SocialRow({
   icon,
   label,
@@ -195,13 +184,6 @@ export default function ContactPageSplit(
                 rel="noopener noreferrer"
               >
                 <MailIcon />
-              </Link>
-              <Link
-                href="tel:+911234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <PhoneIcon />
               </Link>
             </div>
           </div>
