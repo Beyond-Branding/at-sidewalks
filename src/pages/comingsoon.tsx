@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 const ComingSoonPage = () => {
   const [mounted, setMounted] = useState(false);
@@ -12,7 +12,7 @@ const ComingSoonPage = () => {
     seconds: 0,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setMounted(true);
 
     const targetDate = new Date(2026, 0, 8, 21, 0, 0);
