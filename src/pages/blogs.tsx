@@ -6,7 +6,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
 
 const PER_PAGE = 12;
-const MAX_VISIBLE_PAGES = 7; // UI limit, NOT data limit
+const MAX_VISIBLE_PAGES = 7; 
 
 export const getStaticProps = (async () => {
   const { footer } = await getCommonData();
@@ -20,7 +20,7 @@ export const getStaticProps = (async () => {
     revalidate: 60,
     props: {
       footer,
-      initialBlogs: initialBlogs ?? [], 
+      initialBlogs: initialBlogs ?? [],
     },
   };
 }) satisfies GetStaticProps<any>;
@@ -37,21 +37,28 @@ export default function BlogsPage({
   );
 
   const loadPage = async (pageNumber: number) => {
-    if (pageNumber < 1) return;
+    if (pageNumber < 1 || loading) return;
 
-    setLoading(true);
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `/api/posts?page=${pageNumber}&per_page=${PER_PAGE}`
+      );
 
-    const newBlogs = await getPosts({
-      per_page: PER_PAGE,
-      page: pageNumber,
-    });
+      if (!res.ok) throw new Error("Failed to fetch blogs");
 
-    setBlogs(newBlogs);
-    setPage(pageNumber);
-    setHasNextPage(newBlogs.length === PER_PAGE);
-    setLoading(false);
+      const newBlogs = await res.json();
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+      setBlogs(newBlogs);
+      setPage(pageNumber);
+      setHasNextPage(newBlogs.length === PER_PAGE);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      console.error("Pagination error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const startPage = Math.max(1, page - Math.floor(MAX_VISIBLE_PAGES / 2));
@@ -94,6 +101,7 @@ export default function BlogsPage({
               <button
                 key={pageNumber}
                 onClick={() => loadPage(pageNumber)}
+                disabled={loading}
                 className={`w-11 h-11 flex items-center justify-center rounded-lg border
                   ${
                     isActive
