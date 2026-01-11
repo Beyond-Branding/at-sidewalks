@@ -3,41 +3,133 @@ import { BlogCard } from "@/components/home/latest-blogs";
 import { getCommonData } from "@/controllers/common.controller";
 import { getPosts } from "@/controllers/posts.controller";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { useState } from "react";
 
-export const getStaticProps = (async (context) => {
+const PER_PAGE = 12;
+const MAX_VISIBLE_PAGES = 7; 
+
+export const getStaticProps = (async () => {
   const { footer } = await getCommonData();
 
-  /* Page specific data */
-  const allBlogs = await getPosts({
-    per_page: 100,
+  const initialBlogs = await getPosts({
+    per_page: PER_PAGE,
+    page: 1,
   });
 
   return {
     revalidate: 60,
     props: {
       footer,
-      allBlogs,
+      initialBlogs: initialBlogs ?? [],
     },
   };
 }) satisfies GetStaticProps<any>;
 
-export default function BlogsPage(
-  props: InferGetStaticPropsType<typeof getStaticProps>
-) {
-  return (
-    <Layout footer={props.footer}>
-      <main className="mx-auto px-6 pt-12 min-h-screen container">
-        <section className="mb-8">
-          <div>
-            <h2 className="text-4xl italic">all blogs</h2>
-          </div>
-        </section>
+export default function BlogsPage({
+  footer,
+  initialBlogs,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [blogs, setBlogs] = useState(initialBlogs);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(
+    initialBlogs.length === PER_PAGE
+  );
 
-        <section className="gap-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-          {props.allBlogs?.map((blog) => (
-            <BlogCard key={blog.id} className="" blog={blog} />
+  const loadPage = async (pageNumber: number) => {
+    if (pageNumber < 1 || loading) return;
+
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `/api/posts?page=${pageNumber}&per_page=${PER_PAGE}`
+      );
+
+      if (!res.ok) throw new Error("Failed to fetch blogs");
+
+      const newBlogs = await res.json();
+
+      setBlogs(newBlogs);
+      setPage(pageNumber);
+      setHasNextPage(newBlogs.length === PER_PAGE);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      console.error("Pagination error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const startPage = Math.max(1, page - Math.floor(MAX_VISIBLE_PAGES / 2));
+  const endPage = startPage + MAX_VISIBLE_PAGES - 1;
+
+  return (
+    <Layout footer={footer}>
+      <main className="container mx-auto px-6 pt-12 min-h-screen">
+        <h2 className="text-4xl italic mb-8">all blogs</h2>
+
+        {/* Blog Grid */}
+        <section className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+          {blogs.map((blog) => (
+            <BlogCard key={blog.id} blog={blog} />
           ))}
         </section>
+
+        {/* Pagination */}
+        <div className="flex justify-center items-center gap-3 mt-14 mb-20">
+          {/* Previous */}
+          <button
+            disabled={page === 1 || loading}
+            onClick={() => loadPage(page - 1)}
+            className="w-12 h-12 flex items-center justify-center rounded-lg border
+                       text-lg font-semibold
+                       hover:border-[#e58dae] hover:text-[#e58dae]
+                       disabled:opacity-40"
+          >
+            ‹
+          </button>
+
+          {/* Page Numbers */}
+          {Array.from({ length: MAX_VISIBLE_PAGES }).map((_, i) => {
+            const pageNumber = startPage + i;
+            if (pageNumber > endPage || pageNumber < 1) return null;
+
+            const isActive = page === pageNumber;
+
+            return (
+              <button
+                key={pageNumber}
+                onClick={() => loadPage(pageNumber)}
+                disabled={loading}
+                className={`w-11 h-11 flex items-center justify-center rounded-lg border
+                  ${
+                    isActive
+                      ? "bg-[#e58dae] text-white border-[#e58dae]"
+                      : "hover:border-[#e58dae] hover:text-[#e58dae]"
+                  }`}
+              >
+                {pageNumber}
+              </button>
+            );
+          })}
+
+          {/* Next */}
+          <button
+            disabled={!hasNextPage || loading}
+            onClick={() => loadPage(page + 1)}
+            className="w-12 h-12 flex items-center justify-center rounded-lg border
+                       text-lg font-semibold
+                       hover:border-[#e58dae] hover:text-[#e58dae]
+                       disabled:opacity-40"
+          >
+            ›
+          </button>
+        </div>
+
+        {loading && (
+          <p className="text-center text-sm mt-4">Loading blogs...</p>
+        )}
       </main>
     </Layout>
   );
