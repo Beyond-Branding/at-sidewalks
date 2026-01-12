@@ -1,7 +1,7 @@
 import WPAPI from "wpapi";
 
 const wp = new WPAPI({
-  endpoint: "http://admin.atsidewalks.com/wp-json",
+  endpoint: "https://admin.atsidewalks.com/wp-json",
 });
 
 export { wp };

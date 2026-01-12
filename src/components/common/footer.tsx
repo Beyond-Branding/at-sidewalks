@@ -11,7 +11,7 @@ export function Categories() {
   return (
     <div>
       <h4 className="mb-4 font-medium">categories</h4>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-50 lowercase">
+      <ul className="gap-x-50 gap-y-4 grid grid-cols-1 md:grid-cols-2 lowercase">
         {columnOne.map((category) => (
           <li key={`/category/${category.id}`}>
             <Link href={`/category/${category.id}`}>{category.title}</Link>
@@ -106,8 +106,8 @@ export function Footer({ content }: FooterProps) {
   return (
     <footer>
       <div className="bg-rose-50 py-10 w-full">
-        <div className="mx-auto container px-0 sm:px-4">
-          <div className="space-y-6 text-[#e58dae] text-center font-bold">
+        <div className="mx-auto px-0 sm:px-4 container">
+          <div className="space-y-6 font-bold text-[#e58dae] text-center">
             <h4 className="font-cormorant text-4xl">Join the SW Family!</h4>
             <p className="text-1xl">
               Sign up for exclusive updates and so much more!
@@ -119,7 +119,7 @@ export function Footer({ content }: FooterProps) {
               action="https://yachna.substack.com/subscribe"
               method="get"
               target="_blank"
-              className="mx-auto px-6 w-[45ch]"
+              className="mx-auto px-6 w-[45ch] max-w-[90%]"
             >
               <div className="flex items-center mx-auto px-4 py-2 border border-[#EADAD6] hover:border-[#e58dae] focus-within:border-rose-500 rounded-md">
                 <input
@@ -139,7 +139,7 @@ export function Footer({ content }: FooterProps) {
 
       <div className="relative flex mx-auto mt-16 px-8 h-fit container">
         <div className="flex flex-col justify-between w-full">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:justify-items-start md:pl-35">
+          <div className="md:justify-items-start gap-0 grid grid-cols-1 md:grid-cols-4 md:pl-35">
             <div className="md:col-span-2">
               <Categories />
             </div>
@@ -167,7 +167,10 @@ export function Footer({ content }: FooterProps) {
           </div>
 
           <div className="mb-12 pt-4 text-xs text-center">
-            <p>© 2026 At Sidewalks® All rights reserved. Site designed and developed by Beyond Branding</p>
+            <p>
+              © 2026 At Sidewalks® All rights reserved. Site designed and
+              developed by Beyond Branding
+            </p>
           </div>
         </div>
       </div>
