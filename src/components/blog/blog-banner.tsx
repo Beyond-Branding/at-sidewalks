@@ -16,7 +16,7 @@ export default function BlogBanner({
         <div className="w-full h-full bg">
           <div className="w-full h-full">
             <img
-              className="w-auto h-full"
+              className="w-full h-auto object-contain"
               src={coverImage}
               width={4697}
               height={6576}
@@ -35,12 +35,12 @@ export default function BlogBanner({
                 }}
               ></h2>
               <div
-  className="prose prose-neutral max-w-none"
-  suppressHydrationWarning
-  dangerouslySetInnerHTML={{
-    __html: blog?.excerpt?.rendered || "",
-  }}
-/>
+                className="max-w-none prose prose-neutral"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                  __html: blog?.excerpt?.rendered || "",
+                }}
+              />
             </div>
             <div>
               <p>{author?.name}</p>
