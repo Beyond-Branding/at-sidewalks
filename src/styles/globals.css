@@ -21,6 +21,10 @@ body {
   background-color: var(--color-primary);
 }
 
+.blog-container {
+  @apply text-xl;
+}
+
 .blog-container h3 {
   @apply font-bold;
 }

@@ -28,14 +28,14 @@ export default function BlogBanner({
           <div className="space-y-8">
             <div>
               <h2
-                className="font-medium text-3xl"
+                className="mb-2 font-medium text-3xl"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                   __html: blog?.title?.rendered || "",
                 }}
               ></h2>
               <div
-                className="max-w-none prose prose-neutral"
+                className="max-w-none text-xl prose prose-neutral"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                   __html: blog?.excerpt?.rendered || "",
@@ -45,10 +45,6 @@ export default function BlogBanner({
             <div>
               <p>{author?.name}</p>
             </div>
-
-            {/*     <div>
-              <a href="#">https://www.ting-ying.com/wang-liang</a>
-            </div> */}
           </div>
         </div>
       </div>
