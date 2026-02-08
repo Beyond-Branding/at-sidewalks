@@ -25,6 +25,10 @@ body {
   @apply font-bold;
 }
 
+.blog-container strong {
+  @apply font-medium;
+}
+
 .blog-container img {
   @apply mb-8;
 }
@@ -43,4 +47,17 @@ body {
 
 .blog-container ol {
   @apply list-decimal list-inside;
+}
+
+.blog-container li {
+  @apply mb-4;
+}
+
+.blog-container li > h1,
+li > h2,
+li > h3,
+li > h4,
+li > h5,
+li > h6 {
+  @apply inline-block;
 }
