@@ -13,7 +13,7 @@ export function HeroCard() {
           preload="auto"
           loop
           className="hidden md:block bg-center size-full object-cover"
-          src="https://res.cloudinary.com/daoju0r3c/video/upload/v1764602598/1024_2_3_1_pltmcw.mp4"
+          src="https://res.cloudinary.com/dux0kv81i/video/upload/q_auto/f_auto/v1781676330/udmxbmtbwsbcullytcro.mp4"
           poster="/logo.svg"
         />
 
@@ -25,7 +25,7 @@ export function HeroCard() {
           preload="auto"
           loop
           className="block md:hidden bg-center size-full object-cover"
-          src="https://res.cloudinary.com/daoju0r3c/video/upload/v1766487390/BB_xsdnxk.mp4"  
+          src="https://res.cloudinary.com/dux0kv81i/video/upload/q_auto/f_auto/v1781676309/jl2jgrzwvx7pcycwh61c.mp4"  
           poster="/logo.svg"
         />
 

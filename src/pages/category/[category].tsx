@@ -115,7 +115,7 @@ export default function CategoryPage(
             <div className="absolute inset-0">
               <img
                 className="w-full h-full object-cover"
-                src={"/mnt/data/5338fc7e-8e45-4344-87eb-06134dc7dc05.png"}
+                src={"https://res.cloudinary.com/daoju0r3c/image/upload/v1767705387/Beige_Yellow_Black_Retro_Photo_Collage_Organizer_Desktop_Wallpaper_1_-modified_hqbpbw.png"}
                 alt="Fallback hero"
                 height={2048}
                 width={1365}
