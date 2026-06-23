@@ -9,7 +9,7 @@ export function AboutContent({ content }: AboutContentProps) {
         {/* Author Image */}
         <div className="flex-[30%] mx-auto aspect-[10/16] shrink-0">
           <img
-            src="/assets/author - Copy.jpg"
+            src="https://res.cloudinary.com/dux0kv81i/image/upload/q_auto/f_auto/v1781676285/wsgvi86wvdk2b5hotxdn.png"
             className="size-full object-cover rounded-2xl shadow-md"
             alt="Author"
           />
