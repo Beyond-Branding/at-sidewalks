@@ -41,6 +41,11 @@ export default function Sidebar({ isOpen, onClose }: any) {
         <div className="z-10 space-y-4">
           <CollapsibleLink />
           <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
+            <Link href="https://shop.atsidewalks.com" className="font-bold">
+              shop
+            </Link>
+          </div>
+          <div className="flex justify-between items-center pb-2 border-gray-200 border-b-[0.25px]">
             <Link href="/about" className="font-bold">
               about
             </Link>

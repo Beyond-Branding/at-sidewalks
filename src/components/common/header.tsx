@@ -129,6 +129,14 @@ export function Header() {
             <ul className="flex items-center gap-6">
               <li className="hidden md:block">
                 <Link
+                  href="https://shop.atsidewalks.com"
+                  className="hover:text-pink-300 transition-colors duration-200"
+                >
+                  shop
+                </Link>
+              </li>
+              <li className="hidden md:block">
+                <Link
                   href="/about"
                   className="hover:text-pink-300 transition-colors duration-200"
                 >
